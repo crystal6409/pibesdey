@@ -23,9 +23,9 @@ function validateForm() {
         Swal.fire({
             icon: "error",
             title: "Login gagal!",
-            text: "Coba cek lagi username sama passwordnya ya:)",
+            text: "Coba cek lagi username sama passwordnya :)",
             confirmButtonText: "Coba lagi",
-            confirmButtonColor: "#d631e8",
+            confirmButtonColor: "#e83d31",
         });
     }
 }
