@@ -1,54 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Font Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="style.css" />
-    <title>🐣ciee ayank ultah</title>
-  </head>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pibesdey Roxcelle</title>
+    <style>
+        /* Gaya Dasar */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe4e1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-  <body>
-    <div class="login_container">
-      <h2>Login dulu..⁠♡</h2>
-      <form id="loginForm" class="login_form">
-        <input type="text" id="username" placeholder="Username" />
-        <input type="password" id="password" placeholder="Password" />
-        <button type="submit" id="loginBtn">Login</button>
-      </form>
-      <p class="login_description">
-        usernamenya roxcelle.. passwordnya "cantik" ♥︎
-      </p>
+        /* Container Login */
+        .login_container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+            z-index: 10;
+        }
+
+        .login_form input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        #loginBtn {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        #loginBtn:hover { background-color: #ff1493; }
+
+        /* Modal Pop-up Musik */
+        #music-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none; /* Muncul setelah login */
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        /* Konten Utama & Slides */
+        #main-content {
+            display: none;
+            text-align: center;
+            width: 80%;
+        }
+
+        .slide {
+            display: none;
+            animation: fadeIn 0.8s;
+        }
+
+        .slide.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Navigasi */
+        .nav-control {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none; /* Muncul setelah musik aktif */
+            gap: 20px;
+        }
+
+        .btn-nav {
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        #prev { background: #fff; color: #333; }
+        #next { background: #ff69b4; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="login_container" id="loginBox">
+        <h2>Login dulu..⁠♡</h2>
+        <div class="login_form">
+            <input type="text" id="username" placeholder="Username" />
+            <input type="password" id="password" placeholder="Password" />
+            <button onclick="checkLogin()" id="loginBtn">Login</button>
+        </div>
+        <p style="font-size: 12px; color: #888; margin-top: 15px;">
+            usernamenya roxcelle.. passwordnya "cantik" ♥︎
+        </p>
     </div>
-    <div id="login-box" class="login-card">
-    <h3>Login dulu..♡</h3>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button id="login-btn">Login</button>
-    <p>usernamenya roxcelle.. passwordnya "cantik" ♥</p>
-</div>
 
-<div id="nav-control" style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; gap: 15px;">
-    <button id="prev" class="btn-nav">Back</button>
-    <button id="next" class="btn-nav">Next</button>
-</div>
-   
-<div class="nav-control" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; gap: 15px;">
-    <button id="prev" style="padding: 10px 20px; border-radius: 20px; border: none; background: rgba(255,255,255,0.5); cursor: pointer;">Back</button>
-    <button id="next" style="padding: 10px 20px; border-radius: 20px; border: none; background: #ff69b4; color: white; cursor: pointer; font-weight: bold;">Next</button>
-</div>
-  </body>
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-  <!-- SweetAlery -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- Main JS -->
-  <script type="application/javascript" src="index.js"></script>
+    <div id="music-modal">
+        <div class="modal-content">
+            <h3>Dengerin lagunya ya! ♫</h3>
+            <button onclick="startExperience()" id="next" style="padding: 10px 20px;">Nyalakan & Lanjut</button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <audio id="bgMusic" loop>
+            <source src="musik.mp3" type="audio/mpeg"> </audio>
+
+        <div class="slides active">
+            <h1>Halo Sayang! ❤️</h1>
+            <p>Selamat datang di halaman spesial buat kamu.</p>
+        </div>
+        <div class="slide">
+            <h1>Slide 2</h1>
+            <p>Ini adalah konten kedua tanpa timer.</p>
+        </div>
+        <div class="slide">
+            <h1>Slide 3</h1>
+            <p>Halaman terakhir! Semoga suka ya.</p>
+        </div>
+    </div>
+
+    <div class="nav-control" id="navControl">
+        <button id="prev" class="btn-nav" onclick="changeSlide(-1)">Back</button>
+        <button id="next" class="btn-nav" onclick="changeSlide(1)">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide, .slides');
+        const audio = document.getElementById('bgMusic');
+
+        // Logika Login
+        function checkLogin() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            if (user === "roxcelle" && pass === "cantik") {
+                document.getElementById('loginBox').style.display = 'none';
+                document.getElementById('music-modal').style.display = 'flex';
+            } else {
+                alert("Salah ih! Coba liat petunjuknya di bawah.");
+            }
+        }
+
+        // Logika Mulai (Setelah Pop-up Musik)
+        function startExperience() {
+            audio.play().catch(e => console.log("Audio play failed"));
+            document.getElementById('music-modal').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('navControl').style.display = 'flex';
+            showSlide(currentSlide);
+        }
+
+        // Logika Navigasi Manual
+        function changeSlide(n) {
+            currentSlide += n;
+            showSlide(currentSlide);
+        }
+
+        function showSlide(n) {
+            if (n >= slides.length) currentSlide = slides.length - 1;
+            if (n < 0) currentSlide = 0;
+
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            // Sembunyikan tombol Back jika di slide pertama
+            document.getElementById('prev').style.visibility = (currentSlide === 0) ? 'hidden' : 'visible';
+            // Sembunyikan tombol Next jika di slide terakhir
+            document.getElementById('next').innerText = (currentSlide === slides.length - 1) ? 'Finish!' : 'Next';
+        }
+    </script>
+</body>
 </html>
