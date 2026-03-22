@@ -76,6 +76,21 @@
   .song {
     visibility: hidden;
   }
+
+#nav-control {
+    display: none; /* Default sembunyi */
+}
+
+.btn-nav {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#next { background: #ff69b4; color: white; }
+#prev { background: rgba(255,255,255,0.8); }
   
   .container {
     height: 100vh;
