@@ -113,7 +113,7 @@ const animationTimeline = () => {
             ".fake-btn",
             0.1,
             {
-                backgroundColor: "rgb(201, 34, 34)",
+                backgroundColor: "rgb(193, 92, 209)",
             },
             "+=4"
         )
