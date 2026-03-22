@@ -8,7 +8,7 @@
         /* CSS Dasar */
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif; /* Pake font yang lebih bagus */
             background: #ffe4e1; /* Pink muda */
             display: flex;
             justify-content: center;
@@ -22,7 +22,7 @@
         #music-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,18 +31,22 @@
 
         .modal-box {
             background: white;
-            padding: 30px;
-            border-radius: 20px;
+            padding: 40px;
+            border-radius: 25px;
             text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
         /* Kontainer Slide */
         #content-wrapper {
             display: none; /* Muncul setelah musik diaktifkan */
             text-align: center;
-            width: 85%;
-            max-width: 500px;
+            width: 90%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.6); /* Background transparan dikit */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         .slide {
@@ -55,6 +59,17 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.9); }
             to { opacity: 1; transform: scale(1); }
+        }
+
+        /* GAYA FOTO PACAR (PENTING!) */
+        .girlfriend-img {
+            width: 180px; /* Ukuran foto */
+            height: 180px;
+            object-fit: cover; /* Biar gak gepeng */
+            border-radius: 50%; /* Bikin bulat */
+            border: 5px solid #fff; /* Bingkai putih */
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
         }
 
         /* Tombol Navigasi */
@@ -75,6 +90,8 @@
             font-weight: bold;
             transition: 0.3s;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-transform: uppercase;
+            font-size: 14px;
         }
 
         #prevBtn { background: #fff; color: #ff69b4; }
@@ -82,16 +99,18 @@
 
         .btn:hover { transform: translateY(-3px); opacity: 0.9; }
         
-        /* Dekorasi Tambahan */
-        .cake-img { width: 150px; margin-bottom: 20px; }
+        /* Judul & Teks */
+        h1 { font-size: 24px; color: #ff1493; margin: 10px 0; }
+        p { font-size: 16px; line-height: 1.6; color: #555; }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div id="music-overlay">
         <div class="modal-box">
-            <h2>Siap buat kejutannya?</h2>
-            <p>Nyalakan musiknya dulu yaa..</p>
+            <h2 style="color: #ff69b4;">Kejutannya siap!</h2>
+            <p>Nyalakan musiknya dulu yaa, sayang..</p>
             <button class="btn" id="nextBtn" onclick="startBirthday()">Mulai & Play Musik ♫</button>
         </div>
     </div>
@@ -102,24 +121,27 @@
 
     <div id="content-wrapper">
         <div class="slide active">
-            <img src="https://cdn-icons-png.flaticon.com/512/3132/3132715.png" class="cake-img" alt="Cake">
-            <h1>Happy Birthday, Sayang! 🎂</h1>
-            <p>Hari ini adalah hari yang spesial karena kamu lahir ke dunia.</p>
+            <img src="cel1-upsc.jpg" class="girlfriend-img" alt="Sayang">
+            <h1>Happy Birthday, Roxcelle! 🎂</h1>
+            <p>Hari ini adalah hari yang paling spesial karena kamu lahir ke dunia.</p>
         </div>
 
         <div class="slide">
-            <h1>Makasih yaa..</h1>
-            <p>Udah jadi orang paling sabar dan cantik buat aku.</p>
+            <img src="LINK_FOTO_PACAR_KAMU.jpg" class="girlfriend-img" alt="Sayang">
+            <h1>Makasih yaa.. ❤️</h1>
+            <p>Udah jadi orang paling sabar, paling baik, dan paling cantik buat aku.</p>
         </div>
 
         <div class="slide">
+            <img src="LINK_FOTO_PACAR_KAMU.jpg" class="girlfriend-img" alt="Sayang">
             <h1>Wish-nya adalah..</h1>
-            <p>Semoga semua impianmu tercapai dan kita terus bareng-bareng. Amin!</p>
+            <p>Semoga semua impianmu tercapai, selalu sehat, dan kita terus bareng-bareng. Amin!</p>
         </div>
 
         <div class="slide">
-            <h1>I Love You ❤️</h1>
-            <p>Klik tombol di bawah kalau udah selesai ya!</p>
+            <img src="LINK_FOTO_PACAR_KAMU.jpg" class="girlfriend-img" alt="Sayang">
+            <h1>I Love You So Much ❤️</h1>
+            <p>Klik tombol di bawah kalau udah selesai baca ya!</p>
         </div>
     </div>
 
