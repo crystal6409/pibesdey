@@ -27,7 +27,7 @@
     height: 300px;
     border: 1px solid #ffccd5; /* Soft Pink Border */
     border-radius: 20px;
-    background-color: #fff0f3; /* Soft Pink Background */
+    background-color: #f5627f; /* Soft Pink Background */
   }
   
   input[type="text"],
@@ -61,7 +61,7 @@
   button[type="submit"]:hover {
     background-color: #fff;
     color: #ffb3c1; /* Soft Pink */
-    border: 2px solid #ffb3c1; /* Soft Pink Border */
+    border: 2px solid #f5627f; /* Soft Pink Border */
   }
   
   .login_description {
