@@ -212,7 +212,7 @@ const animationTimeline = () => {
             ".profile-picture",
             0.5,
             {
-                scale: 3.5,
+                scale: 5,
                 opacity: 0,
                 x: 25,
                 y: -25,
