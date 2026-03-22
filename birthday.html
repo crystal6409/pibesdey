@@ -1,169 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
-  <!-- Font Poppins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,400&display=swap" rel="stylesheet">
-  <!-- Style CSS -->
-  <link rel="stylesheet" href="style.css">
-  <title>AZEK MAKIN TUA CIHUY!</title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Roxcelle! ❤️</title>
+    <style>
+        /* CSS Dasar */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: #ffe4e1; /* Pink muda */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #333;
+        }
 
+        /* Modal Musik */
+        #music-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Kontainer Slide */
+        #content-wrapper {
+            display: none; /* Muncul setelah musik diaktifkan */
+            text-align: center;
+            width: 85%;
+            max-width: 500px;
+        }
+
+        .slide {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .slide.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Tombol Navigasi */
+        .nav-buttons {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        #prevBtn { background: #fff; color: #ff69b4; }
+        #nextBtn { background: #ff69b4; color: #fff; }
+
+        .btn:hover { transform: translateY(-3px); opacity: 0.9; }
+        
+        /* Dekorasi Tambahan */
+        .cake-img { width: 150px; margin-bottom: 20px; }
+    </style>
+</head>
 <body>
 
-  <audio class="song" loop autoplay>
-    <source src="Sesuatu Di Jogja.mp3">
-    </source>
-    Your browser isn't invited for super fun audio time.
-  </audio>
-
-  <div class="container">
-
-    <div class="one">
-      <h1 class="one">
-        Hi!👋🏼 <span id="name">Roxcelle 𓆩❤︎𓆪</span> 
-      </h1>
-      <p class="two" id="greetingText">I really like your name btw! It's so unique and beautiful, just like you!</p>
+    <div id="music-overlay">
+        <div class="modal-box">
+            <h2>Siap buat kejutannya?</h2>
+            <p>Nyalakan musiknya dulu yaa..</p>
+            <button class="btn" id="nextBtn" onclick="startBirthday()">Mulai & Play Musik ♫</button>
+        </div>
     </div>
 
-    <div class="three">
-      <p>It's your birthday!! 🎂🎂</p>
+    <audio id="bgm" loop>
+        <source src="musik.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="content-wrapper">
+        <div class="slide active">
+            <img src="https://cdn-icons-png.flaticon.com/512/3132/3132715.png" class="cake-img" alt="Cake">
+            <h1>Happy Birthday, Sayang! 🎂</h1>
+            <p>Hari ini adalah hari yang spesial karena kamu lahir ke dunia.</p>
+        </div>
+
+        <div class="slide">
+            <h1>Makasih yaa..</h1>
+            <p>Udah jadi orang paling sabar dan cantik buat aku.</p>
+        </div>
+
+        <div class="slide">
+            <h1>Wish-nya adalah..</h1>
+            <p>Semoga semua impianmu tercapai dan kita terus bareng-bareng. Amin!</p>
+        </div>
+
+        <div class="slide">
+            <h1>I Love You ❤️</h1>
+            <p>Klik tombol di bawah kalau udah selesai ya!</p>
+        </div>
     </div>
 
-    <div class="four">
-      <div class="text-box">
-        <p class="hbd-chatbox">
-          I hope you have a great day today, and the year ahead is full of many blessings. May all your wishes come
-          true!🧸🎀
-        </p>
-        <p class="fake-btn">
-          Send your wishes ✨
-        </p>
-      </div>
+    <div class="nav-buttons" id="navControl" style="display: none;">
+        <button class="btn" id="prevBtn" onclick="changeSlide(-1)">Back</button>
+        <button class="btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
     </div>
 
-    <div class="five">
-      <p class="idea-1">
-        That's what I always pray for.
-      </p>
-      <p class="idea-2">
-       Pray for the better you, better me.. <br /> Better Us!!
-      </p>
-      <p class="idea-3">
-        May your day as beautiful as your heart!🩷💕 <br />
-        <strong>May you receive all the good things you deserve.</strong>
-      </p>
-      <p class="idea-4">Because,</p>
-      <p class="idea-5">
-        You are special.
-        <span>💖💗🥰💞</span>
-      </p>
-      <p class="idea-6">
-        <span>S</span>
-        <span>O</span>
-      </p>
-    </div>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const audio = document.getElementById('bgm');
 
-    <div class="six">
-      <img src="cel1-upsc.jpg" alt="cel1ups" class="profile-picture" id="imagePath" />
-      <img src="hat.svg" alt="Hat" class="hat" />
-      <div class="wish">
-        <h3 class="wish-hbd">Happy Birthday!</h3>
-        <h5 class="wish-text">
-          "Happy Birthday, ARIES GIRL! Wishing you a day as beautiful as you are. <br /> Lots of love and hugs on your
-          special day!🤗"
-        </h5>
-      </div>
-    </div>
+        // Fungsi Memulai Halaman
+        function startBirthday() {
+            // Play musik
+            audio.play().catch(e => console.log("Audio play diblokir browser"));
+            
+            // Sembunyikan overlay, munculkan konten
+            document.getElementById('music-overlay').style.display = 'none';
+            document.getElementById('content-wrapper').style.display = 'block';
+            document.getElementById('navControl').style.display = 'flex';
+            
+            updateNavigation();
+        }
 
-    <div class="seven">
-      <div class="ballons">
-        <img src="ballon2.svg" alt="Ballon" />
-        <img src="ballon1.svg" alt="Ballon" />
-        <img src="ballon3.svg" alt="Ballon" />
-        <img src="ballon2.svg" alt="Ballon" />
-        <img src="ballon1.svg" alt="Ballon" />
-        <img src="ballon3.svg" alt="Ballon" />
-        <img src="ballon2.svg" alt="Ballon" />
-        <img src="ballon1.svg" alt="Ballon" />
-        <img src="ballon3.svg" alt="Ballon" />
-        <img src="ballon2.svg" alt="Ballon" />
-        <img src="ballon1.svg" alt="Ballon" />
-        <img src="ballon3.svg" alt="Ballon" />
-        <img src="ballon2.svg" alt="Ballon" />
-        <img src="ballon1.svg" alt="Ballon" />
-        <img src="ballon3.svg" alt="Ballon" />
-        <img src="ballon2.svg" alt="Ballon" />
-        <img src="ballon1.svg" alt="Ballon" />
-        <img src="ballon3.svg" alt="Ballon" />
-        <img src="ballon2.svg" alt="Ballon" />
-        <img src="ballon1.svg" alt="Ballon" />
-        <img src="ballon3.svg" alt="Ballon" />
-        <img src="ballon2.svg" alt="Ballon" />
-        <img src="ballon1.svg" alt="Ballon" />
-        <img src="ballon3.svg" alt="Ballon" />
-        <img src="ballon2.svg" alt="Ballon" />
-        <img src="ballon1.svg" alt="Ballon" />
-        <img src="ballon3.svg" alt="Ballon" />
-        <img src="ballon2.svg" alt="Ballon" />
-        <img src="ballon1.svg" alt="Ballon" />
-        <img src="ballon3.svg" alt="Ballon" />
-        <img src="ballon2.svg" alt="Ballon" />
-        <img src="ballon1.svg" alt="Ballon" />
-        <img src="ballon3.svg" alt="Ballon" />
-      </div>
-    </div>
+        // Fungsi Navigasi Manual (Ganti Slide)
+        function changeSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide += n;
 
-    <div class="eight">
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="20" />
-      </svg>
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="20" />
-      </svg>
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="20" />
-      </svg>
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="20" />
-      </svg>
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="20" />
-      </svg>
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="20" />
-      </svg>
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="20" />
-      </svg>
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="20" />
-      </svg>
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="20" />
-      </svg>
-    </div>
+            // Batasan slide
+            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
+            if (currentSlide < 0) currentSlide = 0;
 
-    <div class="nine">
-      <p>Okay, now come back and tell me if you liked it.</p>
-      <p id="replay">
-        Or you can click here it if you want to see it again.
-      </p>
-      <p class="last-smile">🖤⃝🤍</p>
-    </div>
-  </div>
+            slides[currentSlide].classList.add('active');
+            updateNavigation();
+        }
+
+        // Update tampilan tombol Back/Next
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Sembunyikan Back di slide pertama
+            prevBtn.style.visibility = (currentSlide === 0) ? 'hidden' : 'visible';
+            
+            // Ubah teks Next jadi Finish di slide terakhir
+            if (currentSlide === slides.length - 1) {
+                nextBtn.innerText = "Selesai ❤️";
+            } else {
+                nextBtn.innerText = "Next";
+            }
+        }
+    </script>
 </body>
-<!-- GSAP -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-<!-- SweetAlert -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Main JS -->
-<script type="application/javascript" src="birthday.js"></script>
-
 </html>
