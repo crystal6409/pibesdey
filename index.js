@@ -16,7 +16,6 @@ function validateForm() {
             title: "Login berhasil!",
             text: "Hello, AYANK!",
             showConfirmButton: false,
-            timer: 1500,
         }).then(function () {
             window.location.href = "birthday.html";
         });
@@ -26,7 +25,7 @@ function validateForm() {
             title: "Login gagal!",
             text: "Coba cek lagi username sama passwordnya ya:)",
             confirmButtonText: "Coba lagi",
-            confirmButtonColor: "#ff7675",
+            confirmButtonColor: "#d631e8",
         });
     }
 }
