@@ -249,31 +249,45 @@ h2 {
   background: linear-gradient(135deg, #ff9eb0, #ffc2d1);
 }
 
+
 /* ========================= */
 /* CHECKMARK */
-/* ========================= */
 .checkmark {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: 10px;
+  right: 12px;
   background: #ff4d6d;
   color: white;
-  font-size: 18px;
-  padding: 6px 10px;
+  font-size: 14px;
+  padding: 4px 7px;
   border-radius: 50%;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(255, 77, 109, 0.7);
+  
+  animation: popIn 0.3s ease;
 
-  transform: scale(0);
-  transition: 0.3s ease;
+  @keyframes popIn {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 }
 
-.checkmark.hidden {
-  display: none;
+/* BUTTON CLAIMED STATE */
+.flip-back button.claimed {
+  background: #ff85a2;
+  box-shadow: 0 0 15px rgba(255, 105, 135, 0.8);
+  cursor: default;
 }
 
-.flip-card.claimed .checkmark {
-  display: block;
-  transform: scale(1);
+/* disable hover flip kalau sudah claimed (optional aesthetic) */
+.flip-card:has(button.claimed):hover .flip-inner {
+  transform: none;
 }
 
 /* ========================= */
