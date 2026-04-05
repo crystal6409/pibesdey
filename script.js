@@ -69,6 +69,7 @@ Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan 
       </div>
 
     </div>
+    <div class="checkmark hidden">✔</div>
     <div class="claimed-label hidden">Free hug buat kamu</div>
 
   </div>
