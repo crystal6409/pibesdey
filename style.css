@@ -393,7 +393,6 @@ h3 {
   transform: scale(0.97);
 }
 
-/* Badan amplop */
 .envelope-body {
   width: 100%;
   height: 100%;
@@ -408,7 +407,6 @@ h3 {
   overflow: hidden;
 }
 
-/* Garis dekoratif amplop */
 .envelope-body::before {
   content: "";
   position: absolute;
@@ -441,7 +439,6 @@ h3 {
   font-weight: 500;
 }
 
-/* Flap amplop (segitiga atas) */
 .envelope-flap {
   position: absolute;
   top: 0;
@@ -457,7 +454,6 @@ h3 {
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
 }
 
-/* Flap terbuka */
 .envelope-flap.open {
   transform: rotateX(180deg);
 }
@@ -479,7 +475,6 @@ h3 {
   overflow-y: auto;
 }
 
-/* Scroll bar cantik */
 .letter-content::-webkit-scrollbar {
   width: 4px;
 }
@@ -488,18 +483,66 @@ h3 {
   border-radius: 10px;
 }
 
-/* Animasi muncul */
 .letter-reveal {
   animation: letterReveal 0.6s ease forwards;
 }
 
 @keyframes letterReveal {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================= */
+/* FINALE PAGE */
+/* ========================= */
+.finale-wrapper {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #1a001a, #2d0020, #1a0010);
+}
+
+#fireworksCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.finale-text {
+  position: absolute;
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.see-you {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 6px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 20px rgba(255, 100, 130, 0.9),
+               0 0 40px rgba(255, 77, 109, 0.6);
+  animation: glowText 2s ease-in-out infinite alternate;
+}
+
+.finale-sub {
+  font-size: 15px;
+  color: rgba(255, 200, 210, 0.9);
+  margin: 0;
+  text-shadow: 0 0 10px rgba(255, 150, 170, 0.7);
+  animation: glowText 2s ease-in-out infinite alternate;
+  animation-delay: 0.5s;
+}
+
+@keyframes glowText {
+  from { text-shadow: 0 0 10px rgba(255,100,130,0.6), 0 0 20px rgba(255,77,109,0.4); }
+  to   { text-shadow: 0 0 20px rgba(255,100,130,1),   0 0 40px rgba(255,77,109,0.9), 0 0 60px rgba(255,50,100,0.5); }
 }
