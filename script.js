@@ -303,8 +303,7 @@ function handleSwipe() {
 /* ========================= */
 document.addEventListener("click", function(e) {
     // kalau klik tombol claim → skip
-    if (e.target.tagName === "BUTTON") return;
-
+    if (e.target.closest("button")) return;
     const card = e.target.closest(".flip-card");
 
     if (!card) {
