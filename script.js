@@ -2,7 +2,7 @@ const pages = [
 
 `
 <h2>Hai Sayang 💕</h2>
-<img src="assets/images/img8.jpg">
+<img src="assets/images/img8.jpg" class="profile-pic">
 <p>Aku bikin ini khusus buat kamu 😘</p>
 `,
 
@@ -28,25 +28,30 @@ tapi aku selalu milih kamu ❤️
 <p>Kamu dapet voucher dari aku, klik next</p>
 `,
 
+
 `
 <h2>Voucher Spesial 🎁</h2>
 
-<div class="voucher">
-  <h3>💖 Free Hug</h3>
-  <p>Berlaku seumur hidup 😆</p>
+<div class="voucher-container">
+
+  <div class="voucher">
+    <h3>💖 Free Hug</h3>
+    <p>Unlimited tanpa expired 😆</p>
+  </div>
+
+  <div class="voucher">
+    <h3>🍜 Dinner Date</h3>
+    <p>Aku traktir full 😉</p>
+  </div>
+
+  <div class="voucher">
+    <h3>🎬 Movie Night</h3>
+    <p>Film bebas + popcorn 🍿</p>
+  </div>
+
 </div>
 
-<div class="voucher">
-  <h3>🍜 Dinner Date</h3>
-  <p>Aku traktir kamu 😉</p>
-</div>
-
-<div class="voucher">
-  <h3>🎬 Movie Night</h3>
-  <p>Film bebas, popcorn wajib 🍿</p>
-</div>
-
-<button onclick="startConfetti()">Claim 💕</button>
+<button onclick="claimVoucher()">Claim 💕</button>
 `
 
 ];
@@ -77,10 +82,23 @@ function prevPage() {
     }
 }
 
+function claimVoucher() {
+    alert("YEAY kamu udah nge claim semua voucher nya! 💕");
+}
+
 /* MUSIC */
-document.body.addEventListener("click", () => {
-    document.getElementById("bgMusic").play();
-}, { once: true });
+window.onload = () => {
+    setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("main").classList.remove("hidden");
+
+        // AUTO PLAY MUSIC
+        document.getElementById("bgMusic").play().catch(() => {
+            console.log("Autoplay diblok, butuh interaksi user");
+        });
+
+    }, 2000);
+};
 
 /* LOADING */
 window.onload = () => {
@@ -128,3 +146,25 @@ function startConfetti() {
 
 /* INIT */
 render();
+
+let startX = 0;
+let endX = 0;
+
+document.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend", e => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    let diff = startX - endX;
+
+    if (diff > 50) {
+        nextPage(); // swipe kiri
+    } else if (diff < -50) {
+        prevPage(); // swipe kanan
+    }
+}
