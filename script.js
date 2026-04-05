@@ -57,24 +57,26 @@ Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan 
 
 <div class="voucher-container">
 
-  <div class="voucher">
-    <h3>💖 Free Hug</h3>
-    <p>Unlimited hug buat kamu 💋</p>
+  <div class="voucher" onclick="openVoucher('hug')">
+    💖 Free Hug
   </div>
 
-  <div class="voucher">
-    <h3>🍜 Dinner/Lunch Date</h3>
-    <p>Makan sampe kenyang 😋</p>
+  <div class="voucher" onclick="openVoucher('dinner')">
+    🍜 Dinner/Lunch Date
   </div>
 
-  <div class="voucher">
-    <h3>🎬 Movie Date</h3>
-    <p>Film bebas + popcorn 🍿</p>
+  <div class="voucher" onclick="openVoucher('movie')">
+    🎬 Movie Date
   </div>
 
 </div>
 
-<button onclick="claimVoucher()">Claim 💕</button>
+<div id="voucherModal" class="modal hidden">
+  <div class="modal-content">
+    <p id="voucherText"></p>
+    <button onclick="closeVoucher()">Claim 💕</button>
+  </div>
+</div>
 `
 
 ];
@@ -124,6 +126,28 @@ function prevPage() {
         currentPage--;
         render();
     }
+}
+
+function openVoucher(type) {
+    const modal = document.getElementById("voucherModal");
+    const text = document.getElementById("voucherText");
+
+    let message = "";
+
+    if (type === "hug") {
+        message = "Unlimited hug buat kamu 💋";
+    } else if (type === "dinner") {
+        message = "Makan sampe kenyang, aku yang traktir 😋";
+    } else if (type === "movie") {
+        message = "Film bebas + popcorn wajib 🍿";
+    }
+
+    text.innerText = message;
+    modal.classList.remove("hidden");
+}
+
+function closeVoucher() {
+    document.getElementById("voucherModal").classList.add("hidden");
 }
 
 function claimVoucher() {
