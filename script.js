@@ -150,6 +150,17 @@ function render() {
   if (currentPage !== pages.length - 1) {
     confettiStarted = false;
 }
+  // ✅ TAMBAHAN DI SINI
+    document.querySelectorAll(".flip-card").forEach(card => {
+        card.addEventListener("click", function(e) {
+
+            if (e.target.closest("button")) return;
+
+            const inner = card.querySelector(".flip-inner");
+            inner.classList.toggle("flipped");
+        });
+    });
+  
 }
 
 /* ========================= */
