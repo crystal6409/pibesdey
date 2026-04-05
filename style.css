@@ -286,29 +286,7 @@ h3 {
   transform: none;
 }
 
-/* .flip-card::before {
-  content: "CLAIMED";
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%) scale(0.5);
-  
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: red;
 
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  z-index: 10; 
-}
-
-/* saat claimed */
-/* .flip-card.claimed::before {
-  opacity: 1;
-  transform: translateX(-50%) scale(1);
-} */ 
 
 .claimed-label {
   position: absolute;
