@@ -209,6 +209,7 @@ function claimVoucher(e) {
 
     // 🔊 SOUND EFFECT (taruh di sini)
     const pop = new Audio("assets/audio/pop.mp3");
+    pop.currentTime = 0;  
     pop.play();
   
     // munculin checkmark
