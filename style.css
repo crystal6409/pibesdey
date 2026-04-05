@@ -174,7 +174,6 @@ h3 {
   perspective: 1000px;
   position: relative;
   cursor: pointer;
-  /* TIDAK pakai overflow:hidden karena memotong 3D */
 }
 
 .flip-inner {
@@ -188,8 +187,6 @@ h3 {
 .flip-inner.flipped {
   transform: rotateY(180deg);
 }
-
-/* TIDAK ada hover flip — dihapus total */
 
 /* ========================= */
 /* FRONT & BACK */
@@ -214,7 +211,7 @@ h3 {
 
 .flip-front {
   background: white;
-  font-size: 24px;
+  font-size: 26px;
 }
 
 .flip-back {
@@ -269,7 +266,6 @@ h3 {
   transform: scale(1.05);
 }
 
-/* setelah claimed */
 .flip-card.claimed .claim-btn {
   background: rgba(255,255,255,0.2);
   color: white;
@@ -338,7 +334,6 @@ h3 {
   transform: scale(0.96);
 }
 
-/* BUTTON CLAIMED STATE */
 .flip-back button.claimed {
   background: #ff85a2;
   box-shadow: 0 0 15px rgba(255, 105, 135, 0.8);
@@ -369,4 +364,142 @@ h3 {
   0%   { box-shadow: 0 0 0 rgba(255,77,109,0); }
   50%  { box-shadow: 0 0 25px rgba(255,77,109,0.9); }
   100% { box-shadow: 0 0 0 rgba(255,77,109,0); }
+}
+
+/* ========================= */
+/* ENVELOPE */
+/* ========================= */
+.envelope-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.envelope {
+  width: 220px;
+  height: 150px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin: 10px auto;
+}
+
+.envelope:hover {
+  transform: scale(1.03);
+}
+
+.envelope:active {
+  transform: scale(0.97);
+}
+
+/* Badan amplop */
+.envelope-body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff758f, #ff4d6d);
+  border-radius: 8px 8px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 25px rgba(255, 77, 109, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Garis dekoratif amplop */
+.envelope-body::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-bottom: 70px solid rgba(255,255,255,0.15);
+}
+
+.envelope-heart {
+  font-size: 40px;
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.15); }
+  60%  { transform: scale(1); }
+  80%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.envelope-hint {
+  font-size: 12px;
+  color: rgba(255,255,255,0.9);
+  margin: 6px 0 0;
+  font-weight: 500;
+}
+
+/* Flap amplop (segitiga atas) */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-top: 75px solid #ff3366;
+  z-index: 10;
+  transform-origin: top center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+/* Flap terbuka */
+.envelope-flap.open {
+  transform: rotateX(180deg);
+}
+
+/* ========================= */
+/* LETTER CONTENT */
+/* ========================= */
+.letter-content {
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555;
+  background: #fffaf9;
+  border-radius: 16px;
+  padding: 20px 22px;
+  border: 1px solid #ffe0e8;
+  box-shadow: 0 4px 20px rgba(255,77,109,0.08);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+/* Scroll bar cantik */
+.letter-content::-webkit-scrollbar {
+  width: 4px;
+}
+.letter-content::-webkit-scrollbar-thumb {
+  background: #ffb3c1;
+  border-radius: 10px;
+}
+
+/* Animasi muncul */
+.letter-reveal {
+  animation: letterReveal 0.6s ease forwards;
+}
+
+@keyframes letterReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
