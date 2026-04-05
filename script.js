@@ -154,6 +154,13 @@ function claimVoucher() {
     alert("Gas kita berangkaaat! 💕");
 }
 
+window.addEventListener("click", function(e) {
+    const modal = document.getElementById("voucherModal");
+    if (e.target === modal) {
+        modal.classList.add("hidden");
+    }
+});
+
 /* LOADING (FIXED - cuma 1 aja sekarang) */
 window.onload = () => {
     setTimeout(() => {
