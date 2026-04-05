@@ -15,7 +15,7 @@ h2 {
 }
 
 h3 {
-  color: #ff007f;
+  color: #6b1111;
 }
 
 /* ========================= */
@@ -294,7 +294,7 @@ h3 {
   left: 50%;
   transform: translate(-50%, -50%) scale(0.5);
 
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 2px;
   color: red;
