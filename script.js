@@ -277,6 +277,9 @@ function handleSwipe() {
 /* FLIP CARD FIX */
 /* ========================= */
 document.addEventListener("click", function(e) {
+    // kalau klik tombol claim → skip
+    if (e.target.tagName === "BUTTON") return;
+
     const card = e.target.closest(".flip-card");
 
     if (!card) {
@@ -286,11 +289,6 @@ document.addEventListener("click", function(e) {
         return;
     }
 
-    // ❌ kalau sudah claimed → jangan bisa flip lagi
-    if (card.classList.contains("claimed")) return;
-
     const inner = card.querySelector(".flip-inner");
-
-    inner.classList.remove("tease");
     inner.classList.toggle("flipped");
 });
