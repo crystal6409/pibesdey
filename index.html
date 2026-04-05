@@ -1,62 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>For You 💖</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 For My Love 💖</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Font aesthetic -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<audio id="bg-music" loop>
-  <source src="assets/music/song.mp3" type="audio/mp3">
-</audio>
-
-<div class="container">
-
-  <!-- PAGE 1 -->
-  <section class="page active" id="page1">
-    <h1>Hai Kamu 💖</h1>
-    <p>Aku ada sesuatu buat kamu...</p>
-    <button onclick="nextPage()">Klik ya ✨</button>
-  </section>
-
-  <!-- PAGE 2 -->
-  <section class="page" id="page2">
-    <img src="assets/img/photo1.jpg" class="photo">
-    <h2>Kamu Spesial Banget</h2>
-    <button onclick="nextPage()">Next 💕</button>
-  </section>
-
-  <!-- PAGE 3 -->
-  <section class="page" id="page3">
-    <img src="assets/img/photo2.jpg" class="photo">
-    <h2>Terima kasih sudah hadir 💖</h2>
-    <button onclick="nextPage()">Lanjut 🎁</button>
-  </section>
-
-  <!-- PAGE 4 (VOUCHER) -->
-  <section class="page" id="page4">
-    <h1>Voucher Spesial 🎁</h1>
-
-    <div class="voucher">
-      <h2>💖 Free Hug Unlimited</h2>
-      <p>Bisa dipakai kapan saja tanpa expired 😆</p>
+<!-- LOADING SCREEN -->
+<div id="loader">
+    <div class="loader-content">
+        <div class="heart">💖</div>
+        <p>Loading cinta kamu...</p>
     </div>
+</div>
 
-    <div class="voucher">
-      <h2>🍜 Dinner Bareng</h2>
-      <p>Redeem kapan aja, aku yang traktir 😉</p>
+<!-- CONFETTI -->
+<canvas id="confetti"></canvas>
+
+<!-- MAIN -->
+<div class="container hidden" id="main">
+
+    <h1>💖 Happy Birthday Sayang 💖</h1>
+
+    <div id="content" class="fade"></div>
+
+    <div class="nav">
+        <button onclick="prevPage()">⬅️</button>
+        <button onclick="nextPage()">➡️</button>
     </div>
-
-    <div class="voucher">
-      <h2>🎬 Movie Date</h2>
-      <p>Nonton bebas pilih film 🎥</p>
-    </div>
-
-    <button onclick="playConfetti()">Claim Semua 💕</button>
-  </section>
 
 </div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+    <source src="assets/audio/sesuatudijogja.mp3" type="audio/mpeg">
+</audio>
 
 <script src="script.js"></script>
 </body>
