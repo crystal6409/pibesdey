@@ -2,7 +2,7 @@ const pages = [
 
 `
 <h2>Hai Sayang 💕</h2>
-<img src="assets/images/pacarkalian.jpeg">
+<img src="assets/images/img8.jpg">
 <p>Aku bikin ini khusus buat kamu 😘</p>
 `,
 
