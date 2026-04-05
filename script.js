@@ -41,7 +41,7 @@ Terimakasih ya.<br>
 
 Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan lakukan.<br>
 
-Xoxo
+✗♡✗♡
 </p>
 `,
 
@@ -70,7 +70,7 @@ Xoxo
 
     </div>
     <div class="checkmark hidden">✔</div>
-    <div class="claimed-label hidden">CLAIMED ❣️</div>
+    <div class="claimed-label hidden">Free hug buat kamu ❣️</div>
 
   </div>
 
@@ -89,7 +89,7 @@ Xoxo
 
     </div>
     <div class="checkmark hidden">✔</div>
-    <div class="claimed-label hidden">CLAIMED ❣️</div>
+    <div class="claimed-label hidden">Yeay! Kita makan apapun yang kamu mau ❣️</div>
   </div>
 
   <div class="flip-card">
@@ -107,7 +107,7 @@ Xoxo
 
     </div>
     <div class="checkmark hidden">✔</div>
-    <div class="claimed-label hidden">CLAIMED ❣️</div>
+    <div class="claimed-label hidden">Nonton apapun, asalkan sama kamu ❣️</div>
   </div>
 
 </div>
