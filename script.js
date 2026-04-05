@@ -73,10 +73,10 @@ Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan 
     <div class="flip-inner">
       <div class="flip-front">
         🍜
-        <h3>Dinner Date</h3>
+        <h3>Dinner/Lunch Date</h3>
       </div>
       <div class="flip-back">
-        <p>Makan sampe kenyang 😋</p>
+        <p>Makan apa aja? Gas!! 😋</p>
         <button class="claim-btn">Claim 💕</button>
       </div>
     </div>
@@ -90,7 +90,7 @@ Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan 
         <h3>Movie Date</h3>
       </div>
       <div class="flip-back">
-        <p>Film bebas + popcorn 🍿</p>
+        <p>Film + popcorn is a must🍿</p>
         <button class="claim-btn">Claim 💕</button>
       </div>
     </div>
