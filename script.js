@@ -57,49 +57,40 @@ Xoxo
 
   <div class="flip-card">
     <div class="flip-inner">
-      
       <div class="flip-front">
         💖
         <h3>Free Hug</h3>
       </div>
-
       <div class="flip-back">
         <p>Unlimited hug buat kamu 💋</p>
-        <button onclick="claimVoucher()">Claim 💕</button>
+        <button onclick="claimVoucher(event)">Claim 💕</button>
       </div>
-
     </div>
   </div>
 
   <div class="flip-card">
     <div class="flip-inner">
-      
       <div class="flip-front">
         🍜
         <h3>Dinner Date</h3>
       </div>
-
       <div class="flip-back">
         <p>Makan sampe kenyang 😋</p>
-        <button onclick="claimVoucher()">Claim 💕</button>
+        <button onclick="claimVoucher(event)">Claim 💕</button>
       </div>
-
     </div>
   </div>
 
   <div class="flip-card">
     <div class="flip-inner">
-      
       <div class="flip-front">
         🎬
         <h3>Movie Date</h3>
       </div>
-
       <div class="flip-back">
         <p>Film bebas + popcorn 🍿</p>
-        <button onclick="claimVoucher()">Claim 💕</button>
+        <button onclick="claimVoucher(event)">Claim 💕</button>
       </div>
-
     </div>
   </div>
 
@@ -119,19 +110,15 @@ function render() {
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
 
-    // animasi
     el.classList.remove("fade");
     void el.offsetWidth;
     el.classList.add("fade");
 
-    // inject content
     el.innerHTML = pages[currentPage];
 
-    // tombol control
     prevBtn.style.display = (currentPage === 0) ? "none" : "inline-block";
     nextBtn.style.display = (currentPage === pages.length - 1) ? "none" : "inline-block";
 
-    // confetti
     if (currentPage === pages.length - 1) {
         startConfetti();
     }
@@ -143,7 +130,6 @@ function render() {
 function nextPage() {
     const music = document.getElementById("bgMusic");
 
-    // play music sekali
     if (!musicStarted) {
         musicStarted = true;
         music.volume = 0;
@@ -174,31 +160,12 @@ function prevPage() {
 }
 
 /* ========================= */
-/* VOUCHER */
+/* VOUCHER CLAIM */
 /* ========================= */
-function openVoucher(type) {
-    const modal = document.getElementById("voucherModal");
-    const text = document.getElementById("voucherText");
-
-    const messages = {
-        hug: "Unlimited hug buat kamu 💋",
-        dinner: "Makan sampe kenyang, aku yang traktir 😋",
-        movie: "Film bebas + popcorn wajib 🍿"
-    };
-
-    text.innerText = messages[type];
-    modal.classList.remove("hidden");
+function claimVoucher(e) {
+    e.stopPropagation(); // ❗ biar gak nge-trigger flip
+    alert("Gas kita berangkaaat! 💕");
 }
-
-function closeVoucher() {
-    document.getElementById("voucherModal").classList.add("hidden");
-}
-
-// klik luar modal
-window.addEventListener("click", function(e) {
-    const modal = document.getElementById("voucherModal");
-    if (e.target === modal) modal.classList.add("hidden");
-});
 
 /* ========================= */
 /* LOADING */
@@ -207,10 +174,7 @@ window.onload = () => {
     setTimeout(() => {
         document.getElementById("loader").style.display = "none";
         document.getElementById("main").classList.remove("hidden");
-
-        // render setelah tampil (FIX BUG kamu tadi)
         render();
-
     }, 2000);
 };
 
@@ -264,23 +228,28 @@ document.addEventListener("touchend", e => {
     handleSwipe();
 });
 
-let mouseDown = false;
-
-document.addEventListener("mousedown", e => {
-    mouseDown = true;
-    startX = e.clientX;
-});
-
-document.addEventListener("mouseup", e => {
-    if (!mouseDown) return;
-    endX = e.clientX;
-    mouseDown = false;
-    handleSwipe();
-});
-
 function handleSwipe() {
     const diff = startX - endX;
-
     if (diff > 50) nextPage();
     else if (diff < -50) prevPage();
 }
+
+/* ========================= */
+/* FLIP CARD MOBILE SUPPORT */
+/* ========================= */
+document.addEventListener("click", function(e) {
+    const card = e.target.closest(".flip-card");
+
+    // klik di luar card → reset semua
+    if (!card) {
+        document.querySelectorAll(".flip-inner").forEach(el => {
+            el.classList.remove("flipped");
+        });
+        return;
+    }
+
+    const inner = card.querySelector(".flip-inner");
+
+    // toggle flip
+    inner.classList.toggle("flipped");
+});
