@@ -110,17 +110,28 @@ function render() {
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
 
+    // animasi fade
     el.classList.remove("fade");
     void el.offsetWidth;
     el.classList.add("fade");
 
+    // inject content
     el.innerHTML = pages[currentPage];
 
+    // tombol nav
     prevBtn.style.display = (currentPage === 0) ? "none" : "inline-block";
     nextBtn.style.display = (currentPage === pages.length - 1) ? "none" : "inline-block";
 
+    // 🎯 halaman terakhir
     if (currentPage === pages.length - 1) {
         startConfetti();
+
+        // aktifin teasing
+        setTimeout(() => {
+            document.querySelectorAll(".flip-inner").forEach(card => {
+                card.classList.add("tease");
+            });
+        }, 500);
     }
 }
 
@@ -160,10 +171,20 @@ function prevPage() {
 }
 
 /* ========================= */
-/* VOUCHER CLAIM */
+/* CLAIM VOUCHER (WITH GLOW) */
 /* ========================= */
 function claimVoucher(e) {
-    e.stopPropagation(); // ❗ biar gak nge-trigger flip
+    e.stopPropagation();
+
+    const card = e.target.closest(".flip-card");
+
+    // glow effect
+    card.classList.add("glow");
+
+    setTimeout(() => {
+        card.classList.remove("glow");
+    }, 800);
+
     alert("Gas kita berangkaaat! 💕");
 }
 
@@ -174,6 +195,7 @@ window.onload = () => {
     setTimeout(() => {
         document.getElementById("loader").style.display = "none";
         document.getElementById("main").classList.remove("hidden");
+
         render();
     }, 2000);
 };
@@ -230,17 +252,18 @@ document.addEventListener("touchend", e => {
 
 function handleSwipe() {
     const diff = startX - endX;
+
     if (diff > 50) nextPage();
     else if (diff < -50) prevPage();
 }
 
 /* ========================= */
-/* FLIP CARD MOBILE SUPPORT */
+/* FLIP CARD (MOBILE + DESKTOP) */
 /* ========================= */
 document.addEventListener("click", function(e) {
     const card = e.target.closest(".flip-card");
 
-    // klik di luar card → reset semua
+    // klik luar → reset semua
     if (!card) {
         document.querySelectorAll(".flip-inner").forEach(el => {
             el.classList.remove("flipped");
@@ -249,6 +272,9 @@ document.addEventListener("click", function(e) {
     }
 
     const inner = card.querySelector(".flip-inner");
+
+    // stop teasing kalau di klik
+    inner.classList.remove("tease");
 
     // toggle flip
     inner.classList.toggle("flipped");
