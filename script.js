@@ -107,6 +107,19 @@ window.onload = () => {
     setTimeout(() => {
         document.getElementById("loader").style.display = "none";
         document.getElementById("main").classList.remove("hidden");
+
+        const music = document.getElementById("bgMusic");
+
+        // coba autoplay
+        music.play().catch(() => {
+            console.log("Autoplay diblok, nunggu klik user...");
+        });
+
+        // fallback: klik pertama
+        document.body.addEventListener("click", () => {
+            music.play();
+        }, { once: true });
+
     }, 2000);
 };
 
