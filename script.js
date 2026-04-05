@@ -54,16 +54,55 @@ Xoxo
 <h2>Voucher Spesial 🎁</h2>
 
 <div class="voucher-container">
-  <div class="voucher" onclick="openVoucher('hug')">💖 Free Hug</div>
-  <div class="voucher" onclick="openVoucher('dinner')">🍜 Dinner/Lunch Date</div>
-  <div class="voucher" onclick="openVoucher('movie')">🎬 Movie Date</div>
-</div>
 
-<div id="voucherModal" class="modal hidden">
-  <div class="modal-content">
-    <p id="voucherText"></p>
-    <button onclick="closeVoucher()">Claim 💕</button>
+  <div class="flip-card">
+    <div class="flip-inner">
+      
+      <div class="flip-front">
+        💖
+        <h3>Free Hug</h3>
+      </div>
+
+      <div class="flip-back">
+        <p>Unlimited hug buat kamu 💋</p>
+        <button onclick="claimVoucher()">Claim 💕</button>
+      </div>
+
+    </div>
   </div>
+
+  <div class="flip-card">
+    <div class="flip-inner">
+      
+      <div class="flip-front">
+        🍜
+        <h3>Dinner Date</h3>
+      </div>
+
+      <div class="flip-back">
+        <p>Makan sampe kenyang 😋</p>
+        <button onclick="claimVoucher()">Claim 💕</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="flip-card">
+    <div class="flip-inner">
+      
+      <div class="flip-front">
+        🎬
+        <h3>Movie Date</h3>
+      </div>
+
+      <div class="flip-back">
+        <p>Film bebas + popcorn 🍿</p>
+        <button onclick="claimVoucher()">Claim 💕</button>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 `
 
