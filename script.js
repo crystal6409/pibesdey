@@ -70,6 +70,8 @@ Xoxo
 
     </div>
     <div class="checkmark hidden">✔</div>
+    <div class="claimed-label hidden">CLAIMED ❣️</div>
+
   </div>
 
   <div class="flip-card">
@@ -87,6 +89,7 @@ Xoxo
 
     </div>
     <div class="checkmark hidden">✔</div>
+    <div class="claimed-label hidden">CLAIMED ❣️</div>
   </div>
 
   <div class="flip-card">
@@ -104,6 +107,7 @@ Xoxo
 
     </div>
     <div class="checkmark hidden">✔</div>
+    <div class="claimed-label hidden">CLAIMED ❣️</div>
   </div>
 
 </div>
@@ -253,6 +257,8 @@ function claimVoucher(card) {
 
     const button = card.querySelector(".claim-btn");
     const checkmark = card.querySelector(".checkmark");
+    const label = card.querySelector(".claimed-label"); // ✅ TAMBAH DI SINI
+
 
     if (button) {
         button.innerText = "Claimed 💖";
@@ -264,11 +270,17 @@ function claimVoucher(card) {
         checkmark.classList.remove("hidden");
     }
 
+    if (label) { // ✅ TAMBAH DI SINI
+          label.classList.remove("hidden");
+    }
+
     card.classList.add("claimed");
 
     const pop = new Audio("assets/audio/pop.mp3");
     pop.currentTime = 0;
     pop.play();
+
+  
 }
 
 /* ========================= */
