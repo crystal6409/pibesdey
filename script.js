@@ -37,12 +37,12 @@ tapi aku selalu milih kamu ❤️
 
   <div class="voucher">
     <h3>💖 Free Hug</h3>
-    <p>Unlimited tanpa expired 😆</p>
+    <p>Unlimited hug buat kamu 💋</p>
   </div>
 
   <div class="voucher">
-    <h3>🍜 Dinner Date</h3>
-    <p>Aku traktir full 😉</p>
+    <h3>🍜 Dinner/Lunch Date</h3>
+    <p>Makan sampe kenyang 😋</p>
   </div>
 
   <div class="voucher">
