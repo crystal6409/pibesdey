@@ -42,7 +42,7 @@ const pages = [
   <div class="letter-content hidden" id="letterContent">
     <p>
       Halo Roxcelle,<br><br>
-      Aku cuma mau bilang kalau aku bangga bisa hadir di hidupmu. Kadang aku merasa kata "hebat" saja tidak cukup untuk menggambarkan kamu.<br><br>
+      Aku cuma mau bilang kalau aku bangga bisa sama kamu. Kadang aku merasa kata "hebat" saja tidak cukup untuk menggambarkan kamu.<br><br>
       Aku tahu jalan yang kamu tempuh tidak selalu mulus, dan aku melihat betapa kerasnya kamu berjuang sampai di titik ini.<br>
       Aku akui ketangguhanmu itu luar biasa, dan kegigihanmu untuk terus maju meskipun berat adalah hal yang paling aku kagumi.<br>
       Meskipun mungkin kamu tidak bercerita, aku yakin kamu selalu berusaha demi yang terbaik.<br>
@@ -109,6 +109,16 @@ const pages = [
   </div>
 
 </div>
+`,
+
+`
+<div class="finale-wrapper">
+  <canvas id="fireworksCanvas"></canvas>
+  <div class="finale-text">
+    <p class="see-you">Happy birthday again, sayang. Talk soon! 🤩</p>
+    <p class="finale-sub">aku sayang kamu 💕</p>
+  </div>
+</div>
 `
 
 ];
@@ -116,6 +126,7 @@ const pages = [
 let currentPage = 0;
 let musicStarted = false;
 let confettiStarted = false;
+let fireworksAnimId = null;
 
 /* ========================= */
 /* RENDER */
@@ -124,6 +135,12 @@ function render() {
     const el = document.getElementById("content");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
+
+    // Stop fireworks jika pindah halaman
+    if (fireworksAnimId) {
+        cancelAnimationFrame(fireworksAnimId);
+        fireworksAnimId = null;
+    }
 
     el.classList.remove("fade");
     void el.offsetWidth;
@@ -134,7 +151,7 @@ function render() {
     prevBtn.style.display = (currentPage === 0) ? "none" : "inline-block";
     nextBtn.style.display = (currentPage === pages.length - 1) ? "none" : "inline-block";
 
-    // Halaman surat cinta — setup klik amplop
+    // Halaman surat cinta
     if (currentPage === 2) {
         const envelope = document.getElementById("envelope");
         if (envelope) {
@@ -142,12 +159,12 @@ function render() {
         }
     }
 
-    if (currentPage === pages.length - 1) {
+    // Halaman voucher (index 4)
+    if (currentPage === 4) {
         if (!confettiStarted) {
             confettiStarted = true;
             startConfetti();
         }
-
         setTimeout(() => {
             document.querySelectorAll(".flip-card:not(.claimed) .flip-inner").forEach(inner => {
                 inner.classList.add("tease");
@@ -155,7 +172,13 @@ function render() {
         }, 500);
     }
 
-    if (currentPage !== pages.length - 1) {
+    // Halaman finale (index 5)
+    if (currentPage === 5) {
+        confettiStarted = false;
+        setTimeout(() => startHeartFireworks(), 100);
+    }
+
+    if (currentPage !== 4) {
         confettiStarted = false;
     }
 
@@ -197,23 +220,129 @@ function openEnvelope() {
     if (envelope.classList.contains("opened")) return;
     envelope.classList.add("opened");
 
-    // Step 1: flap terbuka
     flap.classList.add("open");
 
-    // Step 2: amplop fade out
     setTimeout(() => {
         envelope.style.transition = "opacity 0.4s ease, transform 0.4s ease";
         envelope.style.opacity = "0";
         envelope.style.transform = "scale(0.85) translateY(15px)";
 
-        // Step 3: surat muncul
         setTimeout(() => {
             envelope.style.display = "none";
             letter.classList.remove("hidden");
             letter.classList.add("letter-reveal");
         }, 400);
-
     }, 750);
+}
+
+/* ========================= */
+/* HEART FIREWORKS */
+/* ========================= */
+function startHeartFireworks() {
+    const canvas = document.getElementById("fireworksCanvas");
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    const colors = ["#ff4d6d", "#ff758f", "#ff85a1", "#ffb3c6", "#ff1a4a", "#ff6b9d", "#ffc2d1"];
+    const particles = [];
+
+    // Titik-titik koordinat bentuk hati (parametric)
+    function heartPoints(cx, cy, size) {
+        const pts = [];
+        for (let t = 0; t < Math.PI * 2; t += 0.25) {
+            const x = cx + size * 16 * Math.pow(Math.sin(t), 3) / 16;
+            const y = cy - size * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) / 16;
+            pts.push({ x, y });
+        }
+        return pts;
+    }
+
+    function launchFirework() {
+        const cx = Math.random() * canvas.width;
+        const cy = 80 + Math.random() * (canvas.height * 0.5);
+        const size = 12 + Math.random() * 14;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const pts = heartPoints(cx, cy, size);
+
+        pts.forEach(pt => {
+            const angle = Math.atan2(pt.y - cy, pt.x - cx);
+            const dist = Math.sqrt((pt.x - cx) ** 2 + (pt.y - cy) ** 2);
+            particles.push({
+                x: cx,
+                y: cy,
+                tx: pt.x,   // target x
+                ty: pt.y,   // target y
+                vx: (pt.x - cx) * 0.07,
+                vy: (pt.y - cy) * 0.07,
+                alpha: 1,
+                color,
+                size: 2 + Math.random() * 2,
+                life: 1,
+                decay: 0.012 + Math.random() * 0.008,
+                phase: "expand", // expand -> hold -> fade
+                holdTimer: 0
+            });
+        });
+    }
+
+    let frame = 0;
+
+    function animate() {
+        fireworksAnimId = requestAnimationFrame(animate);
+
+        ctx.fillStyle = "rgba(255, 245, 248, 0.18)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Launch new firework setiap ~80 frame
+        if (frame % 80 === 0) {
+            launchFirework();
+        }
+        frame++;
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+
+            if (p.phase === "expand") {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Cek sudah dekat target
+                const dx = p.tx - p.x;
+                const dy = p.ty - p.y;
+                if (Math.abs(dx) < 3 && Math.abs(dy) < 3) {
+                    p.phase = "hold";
+                    p.holdTimer = 30 + Math.random() * 20;
+                }
+            } else if (p.phase === "hold") {
+                p.holdTimer--;
+                if (p.holdTimer <= 0) p.phase = "fade";
+            } else {
+                p.alpha -= p.decay;
+                if (p.alpha <= 0) {
+                    particles.splice(i, 1);
+                    continue;
+                }
+            }
+
+            ctx.globalAlpha = p.alpha;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+        }
+
+        ctx.globalAlpha = 1;
+    }
+
+    animate();
 }
 
 /* ========================= */
@@ -294,7 +423,7 @@ window.onload = () => {
 };
 
 /* ========================= */
-/* CONFETTI */
+/* CONFETTI (halaman voucher) */
 /* ========================= */
 function startConfetti() {
     const canvas = document.getElementById("confetti");
