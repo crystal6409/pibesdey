@@ -57,36 +57,29 @@ Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan 
 
   <div class="flip-card">
     <div class="flip-inner">
-      
       <div class="flip-front">
         💖
         <h3>Free Hug</h3>
       </div>
-
       <div class="flip-back">
         <p>Unlimited hug buat kamu 💋</p>
         <button class="claim-btn">Claim 💕</button>
       </div>
-
     </div>
     <div class="checkmark hidden">✔</div>
     <div class="claimed-label hidden">Free hug buat kamu</div>
-
   </div>
 
   <div class="flip-card">
     <div class="flip-inner">
-      
       <div class="flip-front">
         🍜
         <h3>Dinner Date</h3>
       </div>
-
       <div class="flip-back">
         <p>Makan sampe kenyang 😋</p>
-       <button class="claim-btn">Claim 💕</button>
+        <button class="claim-btn">Claim 💕</button>
       </div>
-
     </div>
     <div class="checkmark hidden">✔</div>
     <div class="claimed-label hidden">Yeay! Kita makan apapun yang kamu mau</div>
@@ -94,17 +87,14 @@ Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan 
 
   <div class="flip-card">
     <div class="flip-inner">
-      
       <div class="flip-front">
         🎬
         <h3>Movie Date</h3>
       </div>
-
       <div class="flip-back">
         <p>Film bebas + popcorn 🍿</p>
         <button class="claim-btn">Claim 💕</button>
       </div>
-
     </div>
     <div class="checkmark hidden">✔</div>
     <div class="claimed-label hidden">Nonton apapun, asalkan sama kamu</div>
@@ -137,49 +127,55 @@ function render() {
     nextBtn.style.display = (currentPage === pages.length - 1) ? "none" : "inline-block";
 
     if (currentPage === pages.length - 1) {
-
-    // ✅ confetti hanya sekali
-    if (!confettiStarted) {
-        confettiStarted = true;
-        startConfetti();
-    }
-
-    // tease tetap boleh tiap masuk page
-    setTimeout(() => {
-        document.querySelectorAll(".flip-inner").forEach(card => {
-            card.classList.add("tease");
-        });
-    }, 500);
-}
-  if (currentPage !== pages.length - 1) {
-    confettiStarted = false;
-}
-document.querySelectorAll(".flip-card").forEach(card => {
-    card.addEventListener("click", function() {
-        const inner = card.querySelector(".flip-inner");
-
-        // kalau belum claimed, claim dulu sekaligus flip
-        if (!card.classList.contains("claimed")) {
-            claimVoucher(card);
-            inner.classList.add("flipped");
-            return;
+        // confetti hanya sekali
+        if (!confettiStarted) {
+            confettiStarted = true;
+            startConfetti();
         }
 
-        // kalau sudah claimed, tinggal flip bolak-balik bebas
-        inner.classList.toggle("flipped");
-    });
-
-    const btn = card.querySelector(".claim-btn");
-    if (btn) {
-        btn.addEventListener("click", function(e) {
-            e.stopPropagation();
-            claimVoucher(card);
-            const inner = card.querySelector(".flip-inner");
-            inner.classList.add("flipped");
-        });
+        // tease animation — hanya pada card yang belum di-claim
+        setTimeout(() => {
+            document.querySelectorAll(".flip-card:not(.claimed) .flip-inner").forEach(inner => {
+                inner.classList.add("tease");
+            });
+        }, 500);
     }
-});
-  
+
+    if (currentPage !== pages.length - 1) {
+        confettiStarted = false;
+    }
+
+    // Event listener flip card
+    document.querySelectorAll(".flip-card").forEach(card => {
+        card.addEventListener("click", function () {
+            const inner = card.querySelector(".flip-inner");
+
+            // Hentikan tease saat pertama kali diklik
+            inner.classList.remove("tease");
+
+            if (!card.classList.contains("claimed")) {
+                // Klik pertama: claim + flip ke belakang
+                claimVoucher(card);
+                inner.classList.add("flipped");
+            } else {
+                // Sudah claimed: flip bolak-balik bebas
+                inner.classList.toggle("flipped");
+            }
+        });
+
+        // Tombol Claim di sisi belakang
+        const btn = card.querySelector(".claim-btn");
+        if (btn) {
+            btn.addEventListener("click", function (e) {
+                e.stopPropagation(); // jangan trigger flip
+                const inner = card.querySelector(".flip-inner");
+                inner.classList.remove("tease");
+                claimVoucher(card);
+                // tetap di sisi belakang setelah claim via button
+                inner.classList.add("flipped");
+            });
+        }
+    });
 }
 
 /* ========================= */
@@ -218,55 +214,14 @@ function prevPage() {
 }
 
 /* ========================= */
-/* CLAIM VOUCHER (NEW LOGIC) */
+/* CLAIM VOUCHER */
 /* ========================= */
-// function claimVoucher(e) {
-//     e.stopPropagation();
-
-//     const card = e.target.closest(".flip-card");
-
-//     // prevent double claim
-//     if (card.classList.contains("claimed")) return;
-
-//     const button = e.target;
-//     const checkmark = card.querySelector(".checkmark");
-//     const inner = card.querySelector(".flip-inner");
-
-//     // ubah button
-//     button.innerText = "Claimed 💖";
-//     button.disabled = true;
-//     button.style.opacity = "0.7";
-
-//     // 🔊 SOUND EFFECT (taruh di sini)
-//     const pop = new Audio("assets/audio/pop.mp3");
-//     pop.currentTime = 0;  
-//     pop.play();
-  
-//     // munculin checkmark
-//     checkmark.classList.remove("hidden");
-
-//     // kasih state claimed
-//     card.classList.add("claimed");
-
-//     // 💡 BALIK KE DEPAN (INI YANG LO TANYA)
-//     setTimeout(() => {
-//         inner.classList.remove("flipped");
-//     }, 300);
-
-//     // glow effect
-//     card.classList.add("glow");
-//     setTimeout(() => {
-//         card.classList.remove("glow");
-//     }, 800);
-// }
-
 function claimVoucher(card) {
     if (card.classList.contains("claimed")) return;
 
     const button = card.querySelector(".claim-btn");
     const checkmark = card.querySelector(".checkmark");
-    const label = card.querySelector(".claimed-label"); // ✅ TAMBAH DI SINI
-
+    const label = card.querySelector(".claimed-label");
 
     if (button) {
         button.innerText = "Claimed 💖";
@@ -278,8 +233,8 @@ function claimVoucher(card) {
         checkmark.classList.remove("hidden");
     }
 
-    if (label) { // ✅ TAMBAH DI SINI
-          label.classList.remove("hidden");
+    if (label) {
+        label.classList.remove("hidden");
     }
 
     card.classList.add("claimed");
@@ -287,8 +242,6 @@ function claimVoucher(card) {
     const pop = new Audio("assets/audio/pop.mp3");
     pop.currentTime = 0;
     pop.play();
-
-  
 }
 
 /* ========================= */
@@ -354,9 +307,6 @@ document.addEventListener("touchend", e => {
 
 function handleSwipe() {
     const diff = startX - endX;
-
     if (diff > 50) nextPage();
     else if (diff < -50) prevPage();
 }
-
-
