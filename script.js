@@ -30,7 +30,6 @@ tapi aku selalu milih kamu ❤️
 <p>Kamu dapet voucher dari aku, klik next</p>
 `,
 
-
 `
 <h2>Voucher Spesial 🎁</h2>
 
@@ -59,6 +58,7 @@ tapi aku selalu milih kamu ❤️
 ];
 
 let currentPage = 0;
+let musicStarted = false; // ✅ flag biar cuma play sekali
 
 function render() {
     const el = document.getElementById("content");
@@ -71,6 +71,26 @@ function render() {
 }
 
 function nextPage() {
+    const music = document.getElementById("bgMusic");
+
+    // ✅ play hanya saat klik pertama
+    if (!musicStarted) {
+        musicStarted = true;
+        music.volume = 0;
+        music.play();
+
+        // fade in biar smooth
+        let vol = 0;
+        let fade = setInterval(() => {
+            if (vol < 1) {
+                vol += 0.1;
+                music.volume = vol;
+            } else {
+                clearInterval(fade);
+            }
+        }, 100);
+    }
+
     if (currentPage < pages.length - 1) {
         currentPage++;
         render();
@@ -88,38 +108,11 @@ function claimVoucher() {
     alert("YEAY kamu udah nge claim semua voucher nya! 💕");
 }
 
-/* MUSIC */
+/* LOADING (FIXED - cuma 1 aja sekarang) */
 window.onload = () => {
     setTimeout(() => {
         document.getElementById("loader").style.display = "none";
         document.getElementById("main").classList.remove("hidden");
-
-        // AUTO PLAY MUSIC
-        document.getElementById("bgMusic").play().catch(() => {
-            console.log("Autoplay diblok, butuh interaksi user");
-        });
-
-    }, 2000);
-};
-
-/* LOADING */
-window.onload = () => {
-    setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-        document.getElementById("main").classList.remove("hidden");
-
-        const music = document.getElementById("bgMusic");
-
-        // coba autoplay
-        music.play().catch(() => {
-            console.log("Autoplay diblok, nunggu klik user...");
-        });
-
-        // fallback: klik pertama
-        document.body.addEventListener("click", () => {
-            music.play();
-        }, { once: true });
-
     }, 2000);
 };
 
@@ -162,6 +155,7 @@ function startConfetti() {
 /* INIT */
 render();
 
+/* SWIPE SUPPORT */
 let startX = 0;
 let endX = 0;
 
@@ -178,8 +172,23 @@ function handleSwipe() {
     let diff = startX - endX;
 
     if (diff > 50) {
-        nextPage(); // swipe kiri
+        nextPage();
     } else if (diff < -50) {
-        prevPage(); // swipe kanan
+        prevPage();
     }
 }
+
+/* OPTIONAL: SWIPE DESKTOP */
+let mouseDown = false;
+
+document.addEventListener("mousedown", e => {
+    mouseDown = true;
+    startX = e.clientX;
+});
+
+document.addEventListener("mouseup", e => {
+    if (!mouseDown) return;
+    endX = e.clientX;
+    mouseDown = false;
+    handleSwipe();
+});
