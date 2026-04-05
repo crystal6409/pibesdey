@@ -155,21 +155,29 @@ function render() {
     confettiStarted = false;
 }
 document.querySelectorAll(".flip-card").forEach(card => {
-
-    // klik card langsung claim
     card.addEventListener("click", function() {
-        claimVoucher(card);
+        const inner = card.querySelector(".flip-inner");
+
+        // kalau belum claimed, claim dulu sekaligus flip
+        if (!card.classList.contains("claimed")) {
+            claimVoucher(card);
+            inner.classList.add("flipped");
+            return;
+        }
+
+        // kalau sudah claimed, tinggal flip bolak-balik bebas
+        inner.classList.toggle("flipped");
     });
 
-    // klik button juga claim
     const btn = card.querySelector(".claim-btn");
     if (btn) {
         btn.addEventListener("click", function(e) {
-            e.stopPropagation(); // penting!
+            e.stopPropagation();
             claimVoucher(card);
+            const inner = card.querySelector(".flip-inner");
+            inner.classList.add("flipped");
         });
     }
-
 });
   
 }
