@@ -9,18 +9,18 @@ const pages = [
 `
 <h2>Random cute pics of you 🧸🎀</h2>
 <div class="gallery">
-<img src="assets/images/img11.jpg">
-<img src="assets/images/img3.jpg">
-<img src="assets/images/img1.jpg">
-<img src="assets/images/img7.jpg">
 <img src="assets/images/img15.JPG">
-<img src="assets/images/img17.jpg">
-<img src="assets/images/img13.JPG">
-<img src="assets/images/img16.jpg">
+<img src="assets/images/img1.jpg">
+<img src="assets/images/img3.jpg">
+<img src="assets/images/img7.jpg">
+<img src="assets/images/img11.jpg">
 <img src="assets/images/img12.jpg">
+<img src="assets/images/img17.jpg">
+<img src="assets/images/img19.jpg">
+<img src="assets/images/img13.JPG">
 <img src="assets/images/img18.jpg">
-<img src="assets/images/img19.JPG">
 <img src="assets/images/img20.jpg">
+<img src="assets/images/img16.jpg">
 
 
 
