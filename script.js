@@ -73,7 +73,7 @@ Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan 
     <div class="flip-inner">
       <div class="flip-front">
         🍜
-        <h3>Dinner/Lunch Date</h3>
+        <h3>Dinner Date</h3>
       </div>
       <div class="flip-back">
         <p>Makan apa aja? Gas!! 😋</p>
