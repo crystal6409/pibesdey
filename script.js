@@ -12,9 +12,9 @@ const pages = [
 <img src="assets/images/img15.JPG">
 <img src="assets/images/img1.jpg">
 <img src="assets/images/img3.jpg">
+<img src="assets/images/img12.jpg">
 <img src="assets/images/img7.jpg">
 <img src="assets/images/img11.jpg">
-<img src="assets/images/img12.jpg">
 <img src="assets/images/img17.jpg">
 <img src="assets/images/img19.jpg">
 <img src="assets/images/img13.JPG">
@@ -31,9 +31,12 @@ const pages = [
 <h2>Surat Cinta 💌</h2>
 <p>
 Halo Roxcelle,<br>
+<br>
+
 Aku cuma mau bilang kalau aku bangga bisa memilikimu. Kadang aku merasa kata "hebat" saja tidak cukup untuk menggambarkan kamu.<br>
 
-Aku tahu jalan yang kamu tempuh tidak selalu mulus, dan aku melihat betapa kerasnya kamu berjuang sampai di titik ini. Aku akui ketangguhanmu itu luar biasa, dan kegigihanmu untuk terus maju meskipun berat adalah hal yang paling aku kagumi.<br>
+Aku tahu jalan yang kamu tempuh tidak selalu mulus, dan aku melihat betapa kerasnya kamu berjuang sampai di titik ini.<br>
+Aku akui ketangguhanmu itu luar biasa, dan kegigihanmu untuk terus maju meskipun berat adalah hal yang paling aku kagumi.<br>
 Meskipun mungkin kamu tidak bercerita, aku yakin kamu selalu berusaha demi yang terbaik.<br>
 Kamu sudah melakukan yang terbaik sampai sejauh ini.<br>
 Terimakasih ya.<br>
