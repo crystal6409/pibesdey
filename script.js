@@ -8,11 +8,11 @@ const pages = [
 
 `
 <h2>Cutest pic of U 📸</h2>
-<img src="assets/images/img5.jpg">
+<img src="assets/images/img10.jpg">
 <img src="assets/images/img3.jpg">
 <img src="assets/images/img1.jpg">
-<img src="assets/images/img6.jpg">
-<img src="assets/images/img9.jpg">
+<img src="assets/images/img11.jpg">
+<img src="assets/images/img12.jpg">
 `,
 
 `
