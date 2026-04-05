@@ -18,6 +18,12 @@ const pages = [
 <img src="assets/images/img13.JPG">
 <img src="assets/images/img16.jpg">
 <img src="assets/images/img12.jpg">
+<img src="assets/images/img18.jpg">
+<img src="assets/images/img19.JPG">
+<img src="assets/images/img20.jpg">
+
+
+
 </div>
 `,
 
