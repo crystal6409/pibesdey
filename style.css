@@ -79,6 +79,32 @@ h1 {
   display: block;
 }
 
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* biar kotak */
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.gallery img:active {
+  transform: scale(0.95);
+}
+
 /* IMAGES */
 img {
     width: 250px;
