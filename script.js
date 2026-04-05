@@ -7,27 +7,39 @@ const pages = [
 `,
 
 `
-<h2>Cutest pic of U 📸</h2>
+<h2>Random cute pics of you 🧸🎀</h2>
 <div class="gallery">
 <img src="assets/images/img11.jpg">
 <img src="assets/images/img3.jpg">
 <img src="assets/images/img1.jpg">
-<img src="assets/images/img8.jpg">
-<img src="assets/images/img10.jpg">
+<img src="assets/images/img7.jpg">
+<img src="assets/images/img15.JPG">
+<img src="assets/images/img17.jpg">
+<img src="assets/images/img13.JPG">
+<img src="assets/images/img16.jpg">
+<img src="assets/images/img12.jpg">
 </div>
 `,
 
 `
 <h2>Surat Cinta 💌</h2>
 <p>
-Aku gak sempurna...<br>
-tapi aku selalu milih kamu ❤️
+Halo Roxcelle,<br>
+Aku cuma mau bilang kalau aku bangga bisa memilikimu. Kadang aku merasa kata "hebat" saja tidak cukup untuk menggambarkan kamu.
+
+Aku tahu jalan yang kamu tempuh tidak selalu mulus, dan aku melihat betapa kerasnya kamu berjuang sampai di titik ini. Aku akui ketangguhanmu itu luar biasa, dan kegigihanmu untuk terus maju meskipun berat adalah hal yang paling aku kagumi.
+Meskipun mungkin kamu tidak bercerita, aku yakin kamu selalu berusaha demi yang terbaik.
+Kamu sudah melakukan yang terbaik sampai sejauh ini.
+Terimakasih ya.
+
+Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan lakukan.
+✗♡✗♡
 </p>
 `,
 
 `
 <h2>🎉 Surprise 🎉</h2>
-<p>Kamu dapet voucher dari aku, klik next</p>
+<p>Ini hadiah buat kamu 🫵🏻ـــــــــــــــﮩ٨ـ❤️️</p>
 `,
 
 `
@@ -46,7 +58,7 @@ tapi aku selalu milih kamu ❤️
   </div>
 
   <div class="voucher">
-    <h3>🎬 Movie Night</h3>
+    <h3>🎬 Movie Date</h3>
     <p>Film bebas + popcorn 🍿</p>
   </div>
 
