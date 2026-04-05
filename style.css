@@ -289,34 +289,34 @@ h3 {
 .flip-card::before {
   content: "CLAIMED";
   position: absolute;
-  top: 50%;
+  top: 15px;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.5);
+  transform: translateX(-50%) scale(0.5);
   
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: red;
+  color: white;
 
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s ease;
-  z-index: 10; /* 🔥 INI KUNCINYA */
+  z-index: 10; 
 }
 
 /* saat claimed */
 .flip-card.claimed::before {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translateX(-50%) scale(1);
 }
 
 .claimed-label {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.5);
 
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 2px;
   color: white;
