@@ -57,41 +57,53 @@ Xoxo
 
   <div class="flip-card">
     <div class="flip-inner">
+      
       <div class="flip-front">
         💖
         <h3>Free Hug</h3>
       </div>
+
       <div class="flip-back">
         <p>Unlimited hug buat kamu 💋</p>
         <button onclick="claimVoucher(event)">Claim 💕</button>
       </div>
+
     </div>
+    <div class="checkmark hidden">✔</div>
   </div>
 
   <div class="flip-card">
     <div class="flip-inner">
+      
       <div class="flip-front">
         🍜
         <h3>Dinner Date</h3>
       </div>
+
       <div class="flip-back">
         <p>Makan sampe kenyang 😋</p>
         <button onclick="claimVoucher(event)">Claim 💕</button>
       </div>
+
     </div>
+    <div class="checkmark hidden">✔</div>
   </div>
 
   <div class="flip-card">
     <div class="flip-inner">
+      
       <div class="flip-front">
         🎬
         <h3>Movie Date</h3>
       </div>
+
       <div class="flip-back">
         <p>Film bebas + popcorn 🍿</p>
         <button onclick="claimVoucher(event)">Claim 💕</button>
       </div>
+
     </div>
+    <div class="checkmark hidden">✔</div>
   </div>
 
 </div>
@@ -110,23 +122,18 @@ function render() {
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
 
-    // animasi fade
     el.classList.remove("fade");
     void el.offsetWidth;
     el.classList.add("fade");
 
-    // inject content
     el.innerHTML = pages[currentPage];
 
-    // tombol nav
     prevBtn.style.display = (currentPage === 0) ? "none" : "inline-block";
     nextBtn.style.display = (currentPage === pages.length - 1) ? "none" : "inline-block";
 
-    // 🎯 halaman terakhir
     if (currentPage === pages.length - 1) {
         startConfetti();
 
-        // aktifin teasing
         setTimeout(() => {
             document.querySelectorAll(".flip-inner").forEach(card => {
                 card.classList.add("tease");
@@ -171,21 +178,31 @@ function prevPage() {
 }
 
 /* ========================= */
-/* CLAIM VOUCHER (WITH GLOW) */
+/* CLAIM VOUCHER (NEW LOGIC) */
 /* ========================= */
 function claimVoucher(e) {
     e.stopPropagation();
 
     const card = e.target.closest(".flip-card");
+    const button = e.target;
+    const checkmark = card.querySelector(".checkmark");
+
+    // ubah button
+    button.innerText = "Claimed 💖";
+    button.disabled = true;
+    button.style.opacity = "0.7";
+
+    // munculin checkmark
+    checkmark.classList.remove("hidden");
+
+    // kasih state claimed
+    card.classList.add("claimed");
 
     // glow effect
     card.classList.add("glow");
-
     setTimeout(() => {
         card.classList.remove("glow");
     }, 800);
-
-    alert("Gas kita berangkaaat! 💕");
 }
 
 /* ========================= */
@@ -195,7 +212,6 @@ window.onload = () => {
     setTimeout(() => {
         document.getElementById("loader").style.display = "none";
         document.getElementById("main").classList.remove("hidden");
-
         render();
     }, 2000);
 };
@@ -258,12 +274,11 @@ function handleSwipe() {
 }
 
 /* ========================= */
-/* FLIP CARD (MOBILE + DESKTOP) */
+/* FLIP CARD FIX */
 /* ========================= */
 document.addEventListener("click", function(e) {
     const card = e.target.closest(".flip-card");
 
-    // klik luar → reset semua
     if (!card) {
         document.querySelectorAll(".flip-inner").forEach(el => {
             el.classList.remove("flipped");
@@ -271,11 +286,11 @@ document.addEventListener("click", function(e) {
         return;
     }
 
+    // ❌ kalau sudah claimed → jangan bisa flip lagi
+    if (card.classList.contains("claimed")) return;
+
     const inner = card.querySelector(".flip-inner");
 
-    // stop teasing kalau di klik
     inner.classList.remove("tease");
-
-    // toggle flip
     inner.classList.toggle("flipped");
 });
