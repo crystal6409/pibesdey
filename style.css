@@ -296,7 +296,7 @@ h3 {
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: white;
+  color: red;
 
   opacity: 0;
   pointer-events: none;
@@ -319,7 +319,7 @@ h3 {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: white;
+  color: red;
   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 
   opacity: 0;
