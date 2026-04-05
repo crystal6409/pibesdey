@@ -26,23 +26,34 @@ const pages = [
 
 `
 <h2>Surat Cinta 💌</h2>
-<p>
-Halo Roxcelle,<br>
-<br>
 
-Aku cuma mau bilang kalau aku bangga bisa memilikimu. Kadang aku merasa kata "hebat" saja tidak cukup untuk menggambarkan kamu.<br>
+<div class="envelope-wrapper" id="envelopeWrapper">
 
-Aku tahu jalan yang kamu tempuh tidak selalu mulus, dan aku melihat betapa kerasnya kamu berjuang sampai di titik ini.<br>
-Aku akui ketangguhanmu itu luar biasa, dan kegigihanmu untuk terus maju meskipun berat adalah hal yang paling aku kagumi.<br>
-Meskipun mungkin kamu tidak bercerita, aku yakin kamu selalu berusaha demi yang terbaik.<br>
-Kamu sudah melakukan yang terbaik sampai sejauh ini.<br>
-Terimakasih ya.<br>
-<br>
+  <!-- AMPLOP -->
+  <div class="envelope" id="envelope">
+    <div class="envelope-flap" id="envelopeFlap"></div>
+    <div class="envelope-body">
+      <div class="envelope-heart">💌</div>
+      <p class="envelope-hint">Klik untuk buka 🩷</p>
+    </div>
+  </div>
 
-Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan lakukan.<br>
+  <!-- ISI SURAT (tersembunyi dulu) -->
+  <div class="letter-content hidden" id="letterContent">
+    <p>
+      Halo Roxcelle,<br><br>
+      Aku cuma mau bilang kalau aku bangga bisa memilikimu. Kadang aku merasa kata "hebat" saja tidak cukup untuk menggambarkan kamu.<br><br>
+      Aku tahu jalan yang kamu tempuh tidak selalu mulus, dan aku melihat betapa kerasnya kamu berjuang sampai di titik ini.<br>
+      Aku akui ketangguhanmu itu luar biasa, dan kegigihanmu untuk terus maju meskipun berat adalah hal yang paling aku kagumi.<br>
+      Meskipun mungkin kamu tidak bercerita, aku yakin kamu selalu berusaha demi yang terbaik.<br>
+      Kamu sudah melakukan yang terbaik sampai sejauh ini.<br>
+      Terimakasih ya.<br><br>
+      Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan lakukan.<br><br>
+      ✗♡✗♡
+    </p>
+  </div>
 
-✗♡✗♡
-</p>
+</div>
 `,
 
 `
@@ -123,14 +134,20 @@ function render() {
     prevBtn.style.display = (currentPage === 0) ? "none" : "inline-block";
     nextBtn.style.display = (currentPage === pages.length - 1) ? "none" : "inline-block";
 
+    // Halaman surat cinta — setup klik amplop
+    if (currentPage === 2) {
+        const envelope = document.getElementById("envelope");
+        if (envelope) {
+            envelope.addEventListener("click", openEnvelope);
+        }
+    }
+
     if (currentPage === pages.length - 1) {
-        // confetti hanya sekali
         if (!confettiStarted) {
             confettiStarted = true;
             startConfetti();
         }
 
-        // tease animation — hanya pada card yang belum di-claim
         setTimeout(() => {
             document.querySelectorAll(".flip-card:not(.claimed) .flip-inner").forEach(inner => {
                 inner.classList.add("tease");
@@ -146,33 +163,57 @@ function render() {
     document.querySelectorAll(".flip-card").forEach(card => {
         card.addEventListener("click", function () {
             const inner = card.querySelector(".flip-inner");
-
-            // Hentikan tease saat pertama kali diklik
             inner.classList.remove("tease");
 
             if (!card.classList.contains("claimed")) {
-                // Klik pertama: claim + flip ke belakang
                 claimVoucher(card);
                 inner.classList.add("flipped");
             } else {
-                // Sudah claimed: flip bolak-balik bebas
                 inner.classList.toggle("flipped");
             }
         });
 
-        // Tombol Claim di sisi belakang
         const btn = card.querySelector(".claim-btn");
         if (btn) {
             btn.addEventListener("click", function (e) {
-                e.stopPropagation(); // jangan trigger flip
+                e.stopPropagation();
                 const inner = card.querySelector(".flip-inner");
                 inner.classList.remove("tease");
                 claimVoucher(card);
-                // tetap di sisi belakang setelah claim via button
                 inner.classList.add("flipped");
             });
         }
     });
+}
+
+/* ========================= */
+/* OPEN ENVELOPE */
+/* ========================= */
+function openEnvelope() {
+    const envelope = document.getElementById("envelope");
+    const flap = document.getElementById("envelopeFlap");
+    const letter = document.getElementById("letterContent");
+
+    if (envelope.classList.contains("opened")) return;
+    envelope.classList.add("opened");
+
+    // Step 1: flap terbuka
+    flap.classList.add("open");
+
+    // Step 2: amplop fade out
+    setTimeout(() => {
+        envelope.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+        envelope.style.opacity = "0";
+        envelope.style.transform = "scale(0.85) translateY(15px)";
+
+        // Step 3: surat muncul
+        setTimeout(() => {
+            envelope.style.display = "none";
+            letter.classList.remove("hidden");
+            letter.classList.add("letter-reveal");
+        }, 400);
+
+    }, 750);
 }
 
 /* ========================= */
