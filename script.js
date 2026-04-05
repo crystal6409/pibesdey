@@ -21,9 +21,6 @@ const pages = [
 <img src="assets/images/img18.jpg">
 <img src="assets/images/img20.jpg">
 <img src="assets/images/img16.jpg">
-
-
-
 </div>
 `,
 
@@ -43,7 +40,8 @@ Terimakasih ya.<br>
 <br>
 
 Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan lakukan.<br>
-✗♡✗♡
+
+Xoxo
 </p>
 `,
 
@@ -56,19 +54,9 @@ Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan 
 <h2>Voucher Spesial 🎁</h2>
 
 <div class="voucher-container">
-
-  <div class="voucher" onclick="openVoucher('hug')">
-    💖 Free Hug
-  </div>
-
-  <div class="voucher" onclick="openVoucher('dinner')">
-    🍜 Dinner/Lunch Date
-  </div>
-
-  <div class="voucher" onclick="openVoucher('movie')">
-    🎬 Movie Date
-  </div>
-
+  <div class="voucher" onclick="openVoucher('hug')">💖 Free Hug</div>
+  <div class="voucher" onclick="openVoucher('dinner')">🍜 Dinner/Lunch Date</div>
+  <div class="voucher" onclick="openVoucher('movie')">🎬 Movie Date</div>
 </div>
 
 <div id="voucherModal" class="modal hidden">
@@ -82,28 +70,46 @@ Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan 
 ];
 
 let currentPage = 0;
-let musicStarted = false; // ✅ flag biar cuma play sekali
+let musicStarted = false;
 
+/* ========================= */
+/* RENDER */
+/* ========================= */
 function render() {
     const el = document.getElementById("content");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    // animasi
     el.classList.remove("fade");
     void el.offsetWidth;
     el.classList.add("fade");
+
+    // inject content
     el.innerHTML = pages[currentPage];
 
-    if (currentPage === pages.length - 1) startConfetti();
+    // tombol control
+    prevBtn.style.display = (currentPage === 0) ? "none" : "inline-block";
+    nextBtn.style.display = (currentPage === pages.length - 1) ? "none" : "inline-block";
+
+    // confetti
+    if (currentPage === pages.length - 1) {
+        startConfetti();
+    }
 }
 
+/* ========================= */
+/* NAVIGATION */
+/* ========================= */
 function nextPage() {
     const music = document.getElementById("bgMusic");
 
-    // ✅ play hanya saat klik pertama
+    // play music sekali
     if (!musicStarted) {
         musicStarted = true;
         music.volume = 0;
         music.play();
 
-        // fade in biar smooth
         let vol = 0;
         let fade = setInterval(() => {
             if (vol < 1) {
@@ -128,21 +134,20 @@ function prevPage() {
     }
 }
 
+/* ========================= */
+/* VOUCHER */
+/* ========================= */
 function openVoucher(type) {
     const modal = document.getElementById("voucherModal");
     const text = document.getElementById("voucherText");
 
-    let message = "";
+    const messages = {
+        hug: "Unlimited hug buat kamu 💋",
+        dinner: "Makan sampe kenyang, aku yang traktir 😋",
+        movie: "Film bebas + popcorn wajib 🍿"
+    };
 
-    if (type === "hug") {
-        message = "Unlimited hug buat kamu 💋";
-    } else if (type === "dinner") {
-        message = "Makan sampe kenyang, aku yang traktir 😋";
-    } else if (type === "movie") {
-        message = "Film bebas + popcorn wajib 🍿";
-    }
-
-    text.innerText = message;
+    text.innerText = messages[type];
     modal.classList.remove("hidden");
 }
 
@@ -150,26 +155,29 @@ function closeVoucher() {
     document.getElementById("voucherModal").classList.add("hidden");
 }
 
-function claimVoucher() {
-    alert("Gas kita berangkaaat! 💕");
-}
-
+// klik luar modal
 window.addEventListener("click", function(e) {
     const modal = document.getElementById("voucherModal");
-    if (e.target === modal) {
-        modal.classList.add("hidden");
-    }
+    if (e.target === modal) modal.classList.add("hidden");
 });
 
-/* LOADING (FIXED - cuma 1 aja sekarang) */
+/* ========================= */
+/* LOADING */
+/* ========================= */
 window.onload = () => {
     setTimeout(() => {
         document.getElementById("loader").style.display = "none";
         document.getElementById("main").classList.remove("hidden");
+
+        // render setelah tampil (FIX BUG kamu tadi)
+        render();
+
     }, 2000);
 };
 
+/* ========================= */
 /* CONFETTI */
+/* ========================= */
 function startConfetti() {
     const canvas = document.getElementById("confetti");
     const ctx = canvas.getContext("2d");
@@ -177,15 +185,12 @@ function startConfetti() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const pieces = [];
-    for (let i = 0; i < 100; i++) {
-        pieces.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            size: Math.random() * 8 + 2,
-            speed: Math.random() * 3 + 2
-        });
-    }
+    const pieces = Array.from({ length: 100 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 8 + 2,
+        speed: Math.random() * 3 + 2
+    }));
 
     function update() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -205,37 +210,9 @@ function startConfetti() {
     update();
 }
 
-/* INIT */
-
-function render() {
-    const el = document.getElementById("content");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-
-    // animasi fade
-    el.classList.remove("fade");
-    void el.offsetWidth;
-    el.classList.add("fade");
-
-    // inject page
-    el.innerHTML = pages[currentPage];
-
-    // 🎯 CONTROL BUTTON
-    if (currentPage === 0) {
-        prevBtn.style.display = "none";
-    } else {
-        prevBtn.style.display = "inline-block";
-    }
-
-    if (currentPage === pages.length - 1) {
-        nextBtn.style.display = "none";
-        startConfetti(); // tetap jalan di last page
-    } else {
-        nextBtn.style.display = "inline-block";
-    }
-}
-
-/* SWIPE SUPPORT */
+/* ========================= */
+/* SWIPE */
+/* ========================= */
 let startX = 0;
 let endX = 0;
 
@@ -248,17 +225,6 @@ document.addEventListener("touchend", e => {
     handleSwipe();
 });
 
-function handleSwipe() {
-    let diff = startX - endX;
-
-    if (diff > 50) {
-        nextPage();
-    } else if (diff < -50) {
-        prevPage();
-    }
-}
-
-/* OPTIONAL: SWIPE DESKTOP */
 let mouseDown = false;
 
 document.addEventListener("mousedown", e => {
@@ -272,3 +238,10 @@ document.addEventListener("mouseup", e => {
     mouseDown = false;
     handleSwipe();
 });
+
+function handleSwipe() {
+    const diff = startX - endX;
+
+    if (diff > 50) nextPage();
+    else if (diff < -50) prevPage();
+}
