@@ -168,6 +168,7 @@ h2 {
   height: 160px;
   perspective: 1000px;
   position: relative;
+  cursor: pointer;
 }
 
 .flip-inner {
@@ -243,6 +244,7 @@ h2 {
 .flip-card.claimed {
   opacity: 0.85;
   transform: scale(0.98);
+  pointer-events: auto; /* masih bisa diklik */
 }
 
 .flip-card.claimed .flip-back {
@@ -264,6 +266,7 @@ h2 {
   box-shadow: 0 0 10px rgba(255, 77, 109, 0.7);
   
   animation: popIn 0.3s ease;
+}
 
   @keyframes popIn {
   0% {
@@ -276,7 +279,7 @@ h2 {
     transform: scale(1);
   }
 }
-}
+
 
 /* BUTTON CLAIMED STATE */
 .flip-back button.claimed {
@@ -286,7 +289,7 @@ h2 {
 }
 
 /* disable hover flip kalau sudah claimed (optional aesthetic) */
-.flip-card:has(button.claimed):hover .flip-inner {
+.flip-card.claimed:hover .flip-inner {
   transform: none;
 }
 
