@@ -286,7 +286,7 @@ h3 {
   transform: none;
 }
 
-.flip-card::before {
+/* .flip-card::before {
   content: "CLAIMED";
   position: absolute;
   top: 15px;
@@ -305,10 +305,10 @@ h3 {
 }
 
 /* saat claimed */
-.flip-card.claimed::before {
+/* .flip-card.claimed::before {
   opacity: 1;
   transform: translateX(-50%) scale(1);
-}
+} */ */
 
 .claimed-label {
   position: absolute;
