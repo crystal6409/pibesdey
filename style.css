@@ -176,6 +176,9 @@ img:hover {
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
+.flip-inner.flipped {
+  transform: rotateY(180deg);
+}
 
 /* hover flip (desktop) */
 .flip-card:hover .flip-inner {
