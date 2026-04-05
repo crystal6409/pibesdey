@@ -105,7 +105,7 @@ function prevPage() {
 }
 
 function claimVoucher() {
-    alert("YEAY kamu udah nge claim semua voucher nya! 💕");
+    alert("Gas kita berangkaaat! 💕");
 }
 
 /* LOADING (FIXED - cuma 1 aja sekarang) */
