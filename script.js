@@ -175,7 +175,34 @@ function startConfetti() {
 }
 
 /* INIT */
-render();
+
+function render() {
+    const el = document.getElementById("content");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    // animasi fade
+    el.classList.remove("fade");
+    void el.offsetWidth;
+    el.classList.add("fade");
+
+    // inject page
+    el.innerHTML = pages[currentPage];
+
+    // 🎯 CONTROL BUTTON
+    if (currentPage === 0) {
+        prevBtn.style.display = "none";
+    } else {
+        prevBtn.style.display = "inline-block";
+    }
+
+    if (currentPage === pages.length - 1) {
+        nextBtn.style.display = "none";
+        startConfetti(); // tetap jalan di last page
+    } else {
+        nextBtn.style.display = "inline-block";
+    }
+}
 
 /* SWIPE SUPPORT */
 let startX = 0;
