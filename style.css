@@ -104,3 +104,20 @@ img:hover {
     left: 0;
     pointer-events: none;
 }
+
+.voucher {
+  background: white;
+  color: #ff4d6d;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 20px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%,100% {transform: translateY(0);}
+  50% {transform: translateY(-10px);}
+}
