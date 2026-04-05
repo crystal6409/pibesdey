@@ -181,15 +181,11 @@ h3 {
   height: 100%;
   transition: transform 0.6s ease;
   transform-style: preserve-3d;
+  position: relative; /* fix typo */
 }
 
 .flip-inner.flipped {
   transform: rotateY(180deg);
-}
-
-/* hover desktop fix */
-.flip-card:hover .flip-inner:not(.flipped) {
-  transform: rotateY(10deg);
 }
 
 /* ========================= */
@@ -201,6 +197,7 @@ h3 {
   width: 100%;
   height: 100%;
   border-radius: 20px;
+  box-sizing: border-box;
 
   display: flex;
   flex-direction: column;
@@ -208,16 +205,15 @@ h3 {
   align-items: center;
 
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* FRONT */
 .flip-front {
   background: white;
   font-size: 26px;
 }
 
-/* BACK */
 .flip-back {
   background: linear-gradient(135deg, #ff4d6d, #ff758f);
   color: white;
@@ -226,59 +222,18 @@ h3 {
 }
 
 /* ========================= */
-/* BUTTON */
-/* ========================= */
-.flip-back button {
-  margin-top: 10px;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 20px;
-  background: white;
-  color: #ff4d6d;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.flip-back button:hover {
-  transform: scale(1.05);
-}
-
-/* ========================= */
 /* CLAIMED STATE */
 /* ========================= */
 .flip-card.claimed {
   transform: scale(0.95);
-  background: linear-gradient(135deg, #ff4d6d, #ff758f);
-  color: white;
   box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
   transition: all 0.4s ease;
-}
-
-.flip-card.claimed h3,
-.flip-card.claimed p {
-  color: white;
 }
 
 .flip-card.claimed .flip-back {
   background: linear-gradient(135deg, #ff9eb0, #ffc2d1);
 }
 
-.claim-btn {
-  margin-top: 10px;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 20px;
-  background: white;
-  color: #ff4d6d;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.claim-btn:hover {
-  transform: scale(1.05);
-}
-
-/* setelah claimed */
 .flip-card.claimed .claim-btn {
   background: rgba(255,255,255,0.2);
   color: white;
@@ -286,28 +241,26 @@ h3 {
   transform: none;
 }
 
-
-
+/* claimed label — muncul di sisi depan setelah claimed */
 .claimed-label {
   position: absolute;
-  top: 60%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.5);
 
-  font-size: 15px;
+  width: 85%;
+  text-align: center;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 2px;
-  color: red;
+  color: white;
   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s ease;
-
-  z-index: 20; /* di atas semua */
+  z-index: 20;
 }
 
-/* muncul saat claimed */
 .flip-card.claimed .claimed-label {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
@@ -315,6 +268,7 @@ h3 {
 
 /* ========================= */
 /* CHECKMARK */
+/* ========================= */
 .checkmark {
   position: absolute;
   top: 10px;
@@ -327,18 +281,13 @@ h3 {
   font-weight: bold;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
   animation: popIn 0.4s ease;
+  z-index: 30;
 }
 
-  @keyframes popIn {
-  0% {
-    transform: scale(0);
-  }
-  80% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
+@keyframes popIn {
+  0%   { transform: scale(0); }
+  80%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 
@@ -361,6 +310,10 @@ h3 {
 .flip-card.claimed:hover .flip-inner {
   transform: none;
 }
+
+.flip-card:hover .flip-inner {
+}
+
 
 /* ========================= */
 /* TEASING */
