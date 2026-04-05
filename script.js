@@ -60,7 +60,7 @@ function render() {
     el.classList.add("fade");
     el.innerHTML = pages[currentPage];
 
-    if (currentPage === 3) startConfetti();
+    if (currentPage === pages.length - 1) startConfetti();
 }
 
 function nextPage() {
