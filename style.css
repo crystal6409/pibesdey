@@ -243,15 +243,44 @@ h2 {
 /* CLAIMED STATE */
 /* ========================= */
 .flip-card.claimed {
-  opacity: 0.85;
-  transform: scale(0.98);
-  pointer-events: auto; /* masih bisa diklik */
+  transform: scale(0.95);
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  color: white;
+  box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+  transition: all 0.4s ease;
+}
+
+.flip-card.claimed h3,
+.flip-card.claimed p {
+  color: white;
 }
 
 .flip-card.claimed .flip-back {
   background: linear-gradient(135deg, #ff9eb0, #ffc2d1);
 }
 
+.claim-btn {
+  margin-top: 10px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  background: white;
+  color: #ff4d6d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.claim-btn:hover {
+  transform: scale(1.05);
+}
+
+/* setelah claimed */
+.flip-card.claimed .claim-btn {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  cursor: default;
+  transform: none;
+}
 
 /* ========================= */
 /* CHECKMARK */
@@ -259,14 +288,14 @@ h2 {
   position: absolute;
   top: 10px;
   right: 12px;
-  background: #ff4d6d;
-  color: white;
+  background: white;
+  color: #ff4d6d;
   font-size: 14px;
-  padding: 4px 7px;
+  padding: 5px 8px;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 77, 109, 0.7);
-  
-  animation: popIn 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+  animation: popIn 0.4s ease;
 }
 
   @keyframes popIn {
@@ -281,6 +310,14 @@ h2 {
   }
 }
 
+
+.flip-card:active {
+  transform: scale(0.96);
+}
+
+.flip-card.claimed .flip-inner.tease {
+  animation: none;
+}
 
 /* BUTTON CLAIMED STATE */
 .flip-back button.claimed {
