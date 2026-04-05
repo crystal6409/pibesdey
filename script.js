@@ -42,7 +42,7 @@ const pages = [
   <div class="letter-content hidden" id="letterContent">
     <p>
       Halo Roxcelle,<br><br>
-      Aku cuma mau bilang kalau aku bangga bisa memilikimu. Kadang aku merasa kata "hebat" saja tidak cukup untuk menggambarkan kamu.<br><br>
+      Aku cuma mau bilang kalau aku bangga bisa hadir di hidupmu. Kadang aku merasa kata "hebat" saja tidak cukup untuk menggambarkan kamu.<br><br>
       Aku tahu jalan yang kamu tempuh tidak selalu mulus, dan aku melihat betapa kerasnya kamu berjuang sampai di titik ini.<br>
       Aku akui ketangguhanmu itu luar biasa, dan kegigihanmu untuk terus maju meskipun berat adalah hal yang paling aku kagumi.<br>
       Meskipun mungkin kamu tidak bercerita, aku yakin kamu selalu berusaha demi yang terbaik.<br>
