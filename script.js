@@ -25,14 +25,15 @@ const pages = [
 <h2>Surat Cinta 💌</h2>
 <p>
 Halo Roxcelle,<br>
-Aku cuma mau bilang kalau aku bangga bisa memilikimu. Kadang aku merasa kata "hebat" saja tidak cukup untuk menggambarkan kamu.
+Aku cuma mau bilang kalau aku bangga bisa memilikimu. Kadang aku merasa kata "hebat" saja tidak cukup untuk menggambarkan kamu.<br>
 
-Aku tahu jalan yang kamu tempuh tidak selalu mulus, dan aku melihat betapa kerasnya kamu berjuang sampai di titik ini. Aku akui ketangguhanmu itu luar biasa, dan kegigihanmu untuk terus maju meskipun berat adalah hal yang paling aku kagumi.
-Meskipun mungkin kamu tidak bercerita, aku yakin kamu selalu berusaha demi yang terbaik.
-Kamu sudah melakukan yang terbaik sampai sejauh ini.
-Terimakasih ya.
+Aku tahu jalan yang kamu tempuh tidak selalu mulus, dan aku melihat betapa kerasnya kamu berjuang sampai di titik ini. Aku akui ketangguhanmu itu luar biasa, dan kegigihanmu untuk terus maju meskipun berat adalah hal yang paling aku kagumi.<br>
+Meskipun mungkin kamu tidak bercerita, aku yakin kamu selalu berusaha demi yang terbaik.<br>
+Kamu sudah melakukan yang terbaik sampai sejauh ini.<br>
+Terimakasih ya.<br>
+<br>
 
-Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan lakukan.
+Semangat terus ya, Sayang. Aku sayang kamu lebih dari yang bisa aku ucapkan dan lakukan.<br>
 ✗♡✗♡
 </p>
 `,
