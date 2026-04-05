@@ -7,12 +7,12 @@ const pages = [
 `,
 
 `
-<h2>Kenangan Kita 📸</h2>
-<img src="assets/images/img1.jpg">
-<img src="assets/images/img3.jpg">
+<h2>Cutest pic of U 📸</h2>
 <img src="assets/images/img5.jpg">
+<img src="assets/images/img3.jpg">
+<img src="assets/images/img1.jpg">
 <img src="assets/images/img6.jpg">
-<img src="assets/images/img7.jpg">
+<img src="assets/images/img9.jpg">
 `,
 
 `
@@ -25,8 +25,30 @@ tapi aku selalu milih kamu ❤️
 
 `
 <h2>🎉 Surprise 🎉</h2>
-<p>Kamu dapet pelukan + cium virtual 😘</p>
+<p>Kamu dapet voucher dari aku, klik next</p>
+`,
+
 `
+<h2>Voucher Spesial 🎁</h2>
+
+<div class="voucher">
+  <h3>💖 Free Hug</h3>
+  <p>Berlaku seumur hidup 😆</p>
+</div>
+
+<div class="voucher">
+  <h3>🍜 Dinner Date</h3>
+  <p>Aku traktir kamu 😉</p>
+</div>
+
+<div class="voucher">
+  <h3>🎬 Movie Night</h3>
+  <p>Film bebas, popcorn wajib 🍿</p>
+</div>
+
+<button onclick="startConfetti()">Claim 💕</button>
+`
+
 ];
 
 let currentPage = 0;
