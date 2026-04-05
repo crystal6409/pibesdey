@@ -207,6 +207,10 @@ function claimVoucher(e) {
     button.disabled = true;
     button.style.opacity = "0.7";
 
+    // 🔊 SOUND EFFECT (taruh di sini)
+    const pop = new Audio("assets/sounds/pop.mp3");
+    pop.play();
+  
     // munculin checkmark
     checkmark.classList.remove("hidden");
 
