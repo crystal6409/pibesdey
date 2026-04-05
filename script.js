@@ -222,6 +222,7 @@ function claimVoucher(card) {
 
     if (button) {
         button.innerText = "Claimed 💖";
+        button.disabled = true;
         button.style.opacity = "0.7";
     }
 
