@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffd6e0, #ffe6f0);
+    overflow-x: hidden;
+}
+
+/* LOADER */
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #fff0f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.heart {
+    font-size: 3rem;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+/* MAIN */
+.container {
+    text-align: center;
+    padding: 20px;
+    transition: opacity 1s;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    color: #ff4d6d;
+}
+
+/* CARD STYLE */
+#content {
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.5s ease;
+}
+
+.fade {
+    animation: fadeIn 0.6s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* IMAGES */
+img {
+    width: 250px;
+    border-radius: 20px;
+    margin: 10px;
+    transition: transform 0.3s;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+/* BUTTON */
+.nav button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4d6d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav button:hover {
+    background: #ff1e4d;
+    transform: scale(1.1);
+}
+
+/* CONFETTI */
+#confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}

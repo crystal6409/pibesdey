@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 For My Love 💖</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Font aesthetic -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+    <div class="loader-content">
+        <div class="heart">💖</div>
+        <p>Loading cinta kamu...</p>
+    </div>
+</div>
+
+<!-- CONFETTI -->
+<canvas id="confetti"></canvas>
+
+<!-- MAIN -->
+<div class="container hidden" id="main">
+
+    <h1>💖 Happy Birthday Sayang 💖</h1>
+
+    <div id="content" class="fade"></div>
+
+    <div class="nav">
+        <button onclick="prevPage()">⬅️</button>
+        <button onclick="nextPage()">➡️</button>
+    </div>
+
+</div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+    <source src="assets/audio/Sesuatu Di Jogja.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>
