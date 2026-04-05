@@ -65,7 +65,7 @@ Xoxo
 
       <div class="flip-back">
         <p>Unlimited hug buat kamu 💋</p>
-        <button onclick="claimVoucher(event)">Claim 💕</button>
+        <button class="claim-btn">Claim 💕</button>
       </div>
 
     </div>
@@ -82,7 +82,7 @@ Xoxo
 
       <div class="flip-back">
         <p>Makan sampe kenyang 😋</p>
-        <button onclick="claimVoucher(event)">Claim 💕</button>
+       <button class="claim-btn">Claim 💕</button>
       </div>
 
     </div>
@@ -99,7 +99,7 @@ Xoxo
 
       <div class="flip-back">
         <p>Film bebas + popcorn 🍿</p>
-        <button onclick="claimVoucher(event)">Claim 💕</button>
+        <button class="claim-btn">Claim 💕</button>
       </div>
 
     </div>
@@ -150,16 +150,23 @@ function render() {
   if (currentPage !== pages.length - 1) {
     confettiStarted = false;
 }
-  // ✅ TAMBAHAN DI SINI
-    document.querySelectorAll(".flip-card").forEach(card => {
-        card.addEventListener("click", function(e) {
+document.querySelectorAll(".flip-card").forEach(card => {
 
-            if (e.target.closest("button")) return;
-
-            const inner = card.querySelector(".flip-inner");
-            inner.classList.toggle("flipped");
-        });
+    // klik card langsung claim
+    card.addEventListener("click", function() {
+        claimVoucher(card);
     });
+
+    // klik button juga claim
+    const btn = card.querySelector(".claim-btn");
+    if (btn) {
+        btn.addEventListener("click", function(e) {
+            e.stopPropagation(); // penting!
+            claimVoucher(card);
+        });
+    }
+
+});
   
 }
 
@@ -201,44 +208,67 @@ function prevPage() {
 /* ========================= */
 /* CLAIM VOUCHER (NEW LOGIC) */
 /* ========================= */
-function claimVoucher(e) {
-    e.stopPropagation();
+// function claimVoucher(e) {
+//     e.stopPropagation();
 
-    const card = e.target.closest(".flip-card");
+//     const card = e.target.closest(".flip-card");
 
-    // prevent double claim
+//     // prevent double claim
+//     if (card.classList.contains("claimed")) return;
+
+//     const button = e.target;
+//     const checkmark = card.querySelector(".checkmark");
+//     const inner = card.querySelector(".flip-inner");
+
+//     // ubah button
+//     button.innerText = "Claimed 💖";
+//     button.disabled = true;
+//     button.style.opacity = "0.7";
+
+//     // 🔊 SOUND EFFECT (taruh di sini)
+//     const pop = new Audio("assets/audio/pop.mp3");
+//     pop.currentTime = 0;  
+//     pop.play();
+  
+//     // munculin checkmark
+//     checkmark.classList.remove("hidden");
+
+//     // kasih state claimed
+//     card.classList.add("claimed");
+
+//     // 💡 BALIK KE DEPAN (INI YANG LO TANYA)
+//     setTimeout(() => {
+//         inner.classList.remove("flipped");
+//     }, 300);
+
+//     // glow effect
+//     card.classList.add("glow");
+//     setTimeout(() => {
+//         card.classList.remove("glow");
+//     }, 800);
+// }
+
+function claimVoucher(card) {
     if (card.classList.contains("claimed")) return;
 
-    const button = e.target;
+    const button = card.querySelector(".claim-btn");
     const checkmark = card.querySelector(".checkmark");
-    const inner = card.querySelector(".flip-inner");
 
-    // ubah button
-    button.innerText = "Claimed 💖";
-    button.disabled = true;
-    button.style.opacity = "0.7";
+    if (button) {
+        button.innerText = "Claimed 💖";
+        button.disabled = true;
+        button.style.opacity = "0.7";
+    }
 
-    // 🔊 SOUND EFFECT (taruh di sini)
-    const pop = new Audio("assets/audio/pop.mp3");
-    pop.currentTime = 0;  
-    pop.play();
-  
-    // munculin checkmark
-    checkmark.classList.remove("hidden");
+    if (checkmark) {
+        checkmark.classList.remove("hidden");
+    }
 
-    // kasih state claimed
     card.classList.add("claimed");
 
-    // 💡 BALIK KE DEPAN (INI YANG LO TANYA)
-    setTimeout(() => {
-        inner.classList.remove("flipped");
-    }, 300);
-
-    // glow effect
-    card.classList.add("glow");
-    setTimeout(() => {
-        card.classList.remove("glow");
-    }, 800);
+    const pop = new Audio("assets/audio/pop.mp3");
+    pop.currentTime = 0;
+    pop.play();
 }
 
 /* ========================= */
@@ -309,21 +339,4 @@ function handleSwipe() {
     else if (diff < -50) prevPage();
 }
 
-/* ========================= */
-/* FLIP CARD FIX */
-/* ========================= */
-document.addEventListener("click", function(e) {
-    // kalau klik tombol claim → skip
-    if (e.target.closest("button")) return;
-    const card = e.target.closest(".flip-card");
 
-    if (!card) {
-        document.querySelectorAll(".flip-inner").forEach(el => {
-            el.classList.remove("flipped");
-        });
-        return;
-    }
-
-    const inner = card.querySelector(".flip-inner");
-    inner.classList.toggle("flipped");
-});
