@@ -113,6 +113,7 @@ Xoxo
 
 let currentPage = 0;
 let musicStarted = false;
+let confettiStarted = false;
 
 /* ========================= */
 /* RENDER */
@@ -132,14 +133,23 @@ function render() {
     nextBtn.style.display = (currentPage === pages.length - 1) ? "none" : "inline-block";
 
     if (currentPage === pages.length - 1) {
-        startConfetti();
 
-        setTimeout(() => {
-            document.querySelectorAll(".flip-inner").forEach(card => {
-                card.classList.add("tease");
-            });
-        }, 500);
+    // ✅ confetti hanya sekali
+    if (!confettiStarted) {
+        confettiStarted = true;
+        startConfetti();
     }
+
+    // tease tetap boleh tiap masuk page
+    setTimeout(() => {
+        document.querySelectorAll(".flip-inner").forEach(card => {
+            card.classList.add("tease");
+        });
+    }, 500);
+}
+  if (currentPage !== pages.length - 1) {
+    confettiStarted = false;
+}
 }
 
 /* ========================= */
@@ -184,8 +194,13 @@ function claimVoucher(e) {
     e.stopPropagation();
 
     const card = e.target.closest(".flip-card");
+
+    // prevent double claim
+    if (card.classList.contains("claimed")) return;
+
     const button = e.target;
     const checkmark = card.querySelector(".checkmark");
+    const inner = card.querySelector(".flip-inner");
 
     // ubah button
     button.innerText = "Claimed 💖";
@@ -197,6 +212,11 @@ function claimVoucher(e) {
 
     // kasih state claimed
     card.classList.add("claimed");
+
+    // 💡 BALIK KE DEPAN (INI YANG LO TANYA)
+    setTimeout(() => {
+        inner.classList.remove("flipped");
+    }, 300);
 
     // glow effect
     card.classList.add("glow");
