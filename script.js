@@ -407,6 +407,7 @@ function claimVoucher(card) {
     card.classList.add("claimed");
 
     const pop = new Audio("assets/audio/pop.mp3");
+    pop.load();
     pop.currentTime = 0;
     pop.play();
 }
